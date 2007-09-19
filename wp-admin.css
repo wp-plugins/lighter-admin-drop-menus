@@ -1,0 +1,133 @@
+/*
+Plugin Name: Lighter Admin Drop Menus
+Plugin URI: http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin
+Description: Creates Drop Down Menus for WordPress Admin Panels, just like Andy Staines' <a href="http://www.yellowswordfish.com/index.php?pagename=admin-drop-menus-wordpress-plugin">original plugin</a>, but without background pictures and special fonts. This makes it faster to load and more adaptable to customizations.
+Version: 2.3
+Author: corpodibacco
+Author URI: http://www.italyisfalling.com/category/wordpress-things/
+WordPress Version: 2.x
+License: GPL compatible
+*/
+
+
+/* START ADMIN MENU STUFF =========================================== */
+
+li {
+	margin-bottom: 1px;
+	}
+	
+#adminmenu {
+	height: 29px;
+	background-color:#306687;
+	border-top: 1px solid #ccc;
+	vertical-align: middle;
+	white-space: normal;
+	z-index: 100;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	padding-left:19px;
+	}
+
+#adminmenu table {
+	width: auto;
+	height: 0;
+	margin:0px;
+	border-collapse:collapse;
+	border: 0;
+	}	
+
+#adminmenu a {
+	border-bottom: 0px;
+	text-decoration: none;
+	}
+	
+#adminmenu table td {
+	border: 0 !important;
+	}
+
+#adminmenu li {
+	float:left;
+	position:relative;
+	text-align: left;
+	padding: 0px 2px;
+	}
+	
+#adminmenu li a {
+	display:block;
+	text-decoration:none;
+	padding: 1px 10px;
+	color: #eee;
+	font-weight: normal;
+	z-index: 1;
+	}
+
+#adminmenu li ul {
+	display: none;
+	list-style-type: none;
+	z-index: 2;
+	padding-bottom:2px;
+	}
+	
+#adminmenu li:hover a, #adminmenu a.current {
+	color:#2c2c2c;
+	background-color:#F9FCFE;
+	border:0px;
+	padding-bottom:2px;
+	}
+
+#adminmenu li:hover ul {
+	display:block;
+	position:absolute;
+	left: -40px;
+	}
+
+#adminmenu li:hover ul li a {
+	background-color:#CBDCE9;
+	color:#2c2c2c;
+	height:auto;
+	line-height: 110%;
+	width:200px;
+	margin-top: -1px;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	
+	border-left: solid 1px #F9FCFE;
+	border-right: solid 1px #75B4D9;
+	border-bottom: solid 1px #75B4D9;
+	margin-top: -2px;
+	}
+	
+#adminmenu li:hover ul li a:hover {
+	background-color:#F9FCFE;
+	}
+#adminmenu li:hover ul li a.current {
+	background-color:#F9FCFE;
+	}
+.current {
+	font-weight: normal !important;
+	}
+	
+#submenu {
+	display: none;
+}
+
+#submenu .current {
+	display: none;
+}
+
+#submenu a {
+	display: none;
+}
+
+#submenu a:hover {
+	display: none;
+}
+
+#submenu li {
+	display: none;
+}
+
+/* END ADMIN MENU STUFF =========================================== */

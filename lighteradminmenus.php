@@ -5,9 +5,8 @@ Plugin URI: http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plu
 Description: Creates Drop Down Menus for WordPress Admin Panels, just like Andy Staines' <a href="http://www.yellowswordfish.com/index.php?pagename=admin-drop-menus-wordpress-plugin">original plugin</a>, but without background pictures and special fonts. This makes it faster to load and more adaptable to customizations.
 Version: 2.3
 Author: corpodibacco
-Author URI: http://www.italyisfalling.com/category/wordpress-things/
+Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.x
-License: GPL compatible
 */
 
 /*  Copyright 2005/2007 Andy Staines, also Copyright 2007 italyisfalling.com

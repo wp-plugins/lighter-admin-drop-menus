@@ -1,0 +1,133 @@
+/* ==  Lighter Admin Drop Menus 2.2 (WP Native) CSS (All Browsers) - italyisfalling.com == */
+
+/* START ADMIN MENU STUFF =========================================== */
+
+/*li {
+	margin-bottom: 1px;
+	}*/
+#sidemenu, #dashmenu {display:none}
+#wphead {margin-bottom:10px;}
+#adminmenu {
+	top:0;left:0;
+	position:absolute;
+	height: 30px;
+	background-color:#464646;
+	vertical-align:baseline;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	border:none;
+	}
+	
+#adminmenu a.current {
+	-moz-border-radius-topleft: 0px;
+	-khtml-border-top-left-radius: 0px;
+	-webkit-border-top-left-radius: 0px;
+	border-top-left-radius: 0px;
+	-moz-border-radius-topright: 0px;
+	-khtml-border-top-right-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	border-top-right-radius: 0px;
+	}
+
+#adminmenu table {
+	width: auto;
+	height:0px;
+	margin:0px;
+	border-collapse:collapse;
+	border:none;
+	}	
+
+#adminmenu a {
+	text-decoration: none;
+	}
+	
+#adminmenu table td {
+	border: 0 !important;
+	}
+
+#adminmenu li {
+	float:left;
+	position:relative;
+	text-align: left;
+	}
+	
+#adminmenu li a {
+	display:block;
+	text-decoration:none;
+	padding: 0px 10px;
+	color: #CCCCB9;
+	font-weight: normal;
+	font-size:small;
+	z-index: 1;
+	}
+
+#adminmenu li ul {
+	display: none;
+	list-style-type: none;
+	z-index: 2;
+	padding:0px;
+	border-bottom: solid 1px #FFF;
+	}
+	
+#adminmenu li:hover a, #adminmenu a.current {
+	color:#2c2c2c;
+	background-color:#E4F2FD;
+	border:0px;
+	}
+
+#adminmenu li:hover ul {
+	display:block;
+	position:absolute;
+	left: 0px;
+	}
+
+#adminmenu li:hover ul li a {
+	background-color:#464646;
+	color:#CCCCB9;
+	font-size:small;
+	height:auto;
+	line-height: 110%;
+	width:200px;
+	margin-top: -1px;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;		
+	border-left: solid 1px #FFF;
+	border-right: solid 1px #FFF;
+	}
+	
+#adminmenu li:hover ul li a:hover {
+	background-color:#E4F2FD;
+	color:#993300;
+	}
+#adminmenu li:hover ul li a.current {
+	background-color:#E4F2FD;
+	color:#555;
+	}
+.current {
+	font-weight: normal !important;
+	}
+	
+#submenu {
+	display: none;
+}
+
+#submenu .current {
+	display: none;
+}
+
+#submenu a {
+	display: none;
+}
+
+#submenu a:hover {
+	display: none;
+}
+
+#submenu li {
+	display: none;
+}
+
+/* END ADMIN MENU STUFF =========================================== */

@@ -1,4 +1,4 @@
-/* ==  Lighter Admin Drop Menus 2.5.1 (WP Native) CSS (All Browsers) - italyisfalling.com == */
+/* ==  Lighter Admin Drop Menus 2.5.2 (WP Native) CSS (All Browsers) - italyisfalling.com == */
 
 /* START ADMIN MENU STUFF =========================================== */
 
@@ -6,16 +6,18 @@
 	margin-bottom: 1px;
 	}*/
 #sidemenu, #dashmenu {display:none}
+#media-upload-header #sidemenu {display:block}
 #wphead {margin-bottom:10px; border-bottom: solid 1px #C6D9E9}
 #adminmenu {
-	top:0;left:0;
+	top:0;
+	left:0;
 	position:absolute;
-	height: 30px;
+	height: 24px;
 	background-color:#464646;
-	vertical-align:baseline;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+	padding-top:3px;
 	border:none;
 	}
 
@@ -32,14 +34,15 @@
 	}
 	
 #adminmenu a.current {
-	-moz-border-radius-topleft: 0px;
-	-khtml-border-top-left-radius: 0px;
-	-webkit-border-top-left-radius: 0px;
-	border-top-left-radius: 0px;
-	-moz-border-radius-topright: 0px;
-	-khtml-border-top-right-radius: 0px;
-	-webkit-border-top-right-radius: 0px;
-	border-top-right-radius: 0px;
+	-moz-border-radius-topleft: 2px;
+	-khtml-border-top-left-radius: 2px;
+	-webkit-border-top-left-radius: 2px;
+	border-top-left-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	-khtml-border-top-right-radius: 2px;
+	-webkit-border-top-right-radius: 2px;
+	border-top-right-radius: 2px;
+	
 	}
 	
 #adminmenu table td {
@@ -55,8 +58,8 @@
 #adminmenu li a {
 	display:block;
 	text-decoration:none;
-	padding: 0px 10px;
-	color: #CCCCB9;
+	padding: 0px 10px 0px;
+	color: #D7D7D7;
 	font-weight: normal;
 	font-size:small;
 	z-index: 1;
@@ -81,16 +84,16 @@
 
 }
 
-
 #adminmenu li:hover ul {
 	display:block;
 	position:absolute;
 	left: -1px;
+	top:26px;
 	}
 
 #adminmenu li:hover ul li a {
 	background-color:#464646;
-	color:#CCCCB9;
+	color:#D7D7D7;/*CCCCB9*/
 	font-size:small;
 	height:auto;
 	line-height: 110%;

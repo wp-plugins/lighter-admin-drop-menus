@@ -6,7 +6,7 @@
 	margin-bottom: 1px;
 	}*/
 #sidemenu, #dashmenu {display:none}
-#wphead {margin-bottom:10px;}
+#wphead {margin-bottom:10px; border-bottom: solid 1px #C6D9E9}
 #adminmenu {
 	top:0;left:0;
 	position:absolute;

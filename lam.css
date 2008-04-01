@@ -58,7 +58,7 @@
 #adminmenu li a {
 	display:block;
 	text-decoration:none;
-	padding: 0px 10px 0px;
+	padding: 0px 13px 0px;
 	color: #D7D7D7;
 	font-weight: normal;
 	font-size:small;
@@ -71,6 +71,7 @@
 	z-index: 2;
 	padding:0px;
 	border-bottom: solid 1px #FFF;
+
 	}
 	
 #adminmenu a.current,#adminmenu li:hover a.current {
@@ -81,14 +82,15 @@
 #adminmenu li:hover a{
 	color:#fff;
 	background-color:#464646;
+	
 
 }
 
 #adminmenu li:hover ul {
 	display:block;
 	position:absolute;
-	left: 0px;
-	top:26px;
+	left:-1px;
+	top:28px;
 	}
 
 #adminmenu li:hover ul li a {

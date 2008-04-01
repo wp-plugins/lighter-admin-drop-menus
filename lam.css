@@ -87,7 +87,7 @@
 #adminmenu li:hover ul {
 	display:block;
 	position:absolute;
-	left: -1px;
+	left: 0px;
 	top:26px;
 	}
 

@@ -4,7 +4,7 @@ Contributors: corpodibacco
 Tags: menu, admin, css, light
 Requires at least: 2.5
 Tested up to: 2.5
-Stable tag: 1.50
+Stable tag: 2.5.1
 url http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin/
 
 == Description ==

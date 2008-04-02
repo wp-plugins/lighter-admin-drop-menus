@@ -19,7 +19,7 @@ This plugin creates Drop Down Menus for WordPress Admin Panels. Fast to load and
 
 == Installation ==
 
-1. Upload the content of stray-quotes.zip to your `/wp-content/plugins/` directory.
+1. Upload the entire content of lighter_admin_menus.zip to your `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Done. Enjoy.
 

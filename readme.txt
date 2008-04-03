@@ -5,7 +5,8 @@ Tags: menu, admin, css, light
 Requires at least: 2.5
 Tested up to: 2.5
 Stable tag: 2.5.2
-Url: http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin/
+
+Creates Drop Down Menus for WordPress Admin Panels. Fast to load and adaptable to customizations. Comes with silk icons and a design that fits within the Wordpress 2.5 interface taking the less room possible.
 
 == Description ==
 

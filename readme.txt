@@ -4,7 +4,7 @@ Contributors: corpodibacco
 Tags: menu, admin, css, light
 Requires at least: 2.5
 Tested up to: 2.5
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 
 Creates Drop Down Menus for WordPress Admin Panels. Fast to load and adaptable to customizations. Comes with silk icons and a design that fits within the Wordpress 2.5 interface taking the less room possible.
 
@@ -18,6 +18,10 @@ This plugin creates Drop Down Menus for WordPress Admin Panels. Fast to load and
 
 2. The plugin at work under Internet Explorer 7.
 
+3. The plugin under Opera 9.x
+
+4. Thr plugin with Safari for windows
+
 == Installation ==
 
 1. Upload the entire content of lighter_admin_menus.zip to your `/wp-content/plugins/` directory.
@@ -26,6 +30,7 @@ This plugin creates Drop Down Menus for WordPress Admin Panels. Fast to load and
 
 == Changelog ==
 
+* 2.5.3 slight redesign to favor smooth corners in the menus. 
 * 2.5.2 small fixes (thanks to Robert!) and a slight redesign favoring the "tab" effect. Also FF 2 and IE 7 look more alike now.
 * 2.5.1 small fixes
 * 2.5 redesigned to fit into wordpress 2.5.

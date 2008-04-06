@@ -3,7 +3,7 @@
 Plugin Name: Lighter Admin Drop Menus
 Plugin URI: http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load and adaptable to customizations. Comes with silk icons and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.5.3
+Version: 2.5.4
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.5
@@ -25,94 +25,23 @@ WordPress Version: 2.5
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-// Set the stylesheet to replace wp-admin.css
-// ==========================================
-
-
-function aws_header() 
+function lad_header() // Set the stylesheet to replace wp-admin.css
 {
 	global $is_winIE;
 	global $plugin_uri;
 
 	$dir = basename(dirname(__FILE__));
-	$plugin_uri= trailingslashit(get_settings('siteurl')) . 'wp-content/plugins/' . $dir;
+	$plugin_uri= trailingslashit(get_option('siteurl')) . 'wp-content/plugins/' . $dir;
 
 	echo '<link rel="stylesheet" type="text/css" href="' . $plugin_uri . '/lam.css" />' . "\n";
 	
 	if ($is_winIE)
 	{
-		echo '<link rel="stylesheet" type="text/css" href="' . $plugin_uri . '/lam-ie.css" />';
+		echo '<link rel="stylesheet" type="text/css" href="' . $plugin_uri . '/lam-ie.css" />' . "\n";
 	}
 }
 
-// Main function : creates the new set of <ul> and <li> for the admin menus
-// ========================================================================
-
-function aws_adminmenu() 
-{
-	global $is_winIE;
-	global $plugin_uri;
-	global $ipath;
-
-	$ipath = trailingslashit($plugin_uri . '/images/');
-
-	$menu = aws_adminmenu_build();
-	$menu = aws_check_orphans($menu);
-
-	$adaut_menu = '';
-	$printsub = 1;
-	$iecode='';
-	
-	foreach ($menu as $k=>$v) 
-	{
-		$url 	= $v['url'];
-		$anchor = str_replace('"', '\"', $v['name']);
-		$class	= $v['class'];
-
-		$iecode = '';
-		$adaut_menu .= '<li><a' . $iecode . " href='$url'$class>$anchor";
-		
-		if ($is_winIE)
-		{
-			$adaut_menu .= '<table><tr><td>';
-		} else {
-			$adaut_menu .= '</a><table><tr><td>';
-		}
-
-		if (is_array($v['sub'])) 
-		{
-			$ulclass='';
-			if ($class) $ulclass = " class='ulcurrent'";
-			$adaut_menu .= "<ul$ulclass>";
-
-			foreach ($v['sub'] as $subk=>$subv) 
-			{
-				$suburl = $subv['url'];
-				$subanchor = str_replace('"', '\"', $subv['icon'] . '' . $subv['name']);
-				$subclass='';
-				if (array_key_exists('class',$subv)) $subclass=$subv['class'];
-				$adaut_menu .= "<li><a href='$suburl'$subclass>$subanchor</a></li>";
-			}
-			$adaut_menu .= "</ul>";
-		} else {
-			$adaut_menu .= "<ul><li></li></ul>";
-			if ($class) $printsub = 0;
-		}
-		
-		if ($is_winIE)
-		{
-			$adaut_menu .= "</td></tr></table></a></li>";
-		}
-		
-		$adaut_menu .="</td></tr></table></li> ";			
-	}
-	/*$adaut_menu .= '<li><a href=\'' . get_settings('siteurl') . '\'>Site</a></li>'; this repeats in the menu the "view site" command*/
-	
-	aws_adminmenu_printjs($adaut_menu, $printsub);
-}
-
-/* Core stuff : builds an array populated with all the infos needed for menu and submenu */
-function aws_adminmenu_build () 
+function lad_adminmenu_build () // builds an array populated with all the infos needed for menu and submenu
 {
 	global $menu, $submenu, $plugin_page, $pagenow;
 	global $ipath;
@@ -120,8 +49,6 @@ function aws_adminmenu_build ()
 	$self = preg_replace('|^.*/wp-admin/|i', '', $_SERVER['PHP_SELF']);
 	$self = preg_replace('|^.*/plugins/|i', '', $self);
 
-	/*aws_correct_core_menus();*/ /*this breaks translations!!*/
-	get_admin_page_parent();
 	$altmenu = array();
 
 	/* Step 1 : populate first level menu as per user rights */
@@ -134,9 +61,9 @@ function aws_adminmenu_build ()
 
 			if ( file_exists(ABSPATH . "wp-content/plugins/{$item[2]}") )
 			{
-				$altmenu[$sys_menu_file]['url'] = get_settings('siteurl') . "/wp-admin/admin.php?page={$item[2]}";
+				$altmenu[$sys_menu_file]['url'] = get_option('siteurl') . "/wp-admin/admin.php?page={$item[2]}";
 			} else {
-				$altmenu[$sys_menu_file]['url'] = get_settings('siteurl') . "/wp-admin/{$item[2]}";
+				$altmenu[$sys_menu_file]['url'] = get_option('siteurl') . "/wp-admin/{$item[2]}";
 			}
 			if (( strcmp($self, $item[2]) == 0 && empty($parent_file)) || ($parent_file && ($item[2] == $parent_file)))
 			$altmenu[$sys_menu_file]['class'] = " class='current'";
@@ -146,51 +73,128 @@ function aws_adminmenu_build ()
 
 	/* Step 2 : populate second level menu */
 
-	foreach ($submenu as $k=>$v)
+	foreach ($submenu as $key=>$value)
 	{
-		foreach ($v as $item) 
+		foreach ($value as $item) 
 		{
-			if (array_key_exists($k,$altmenu) and current_user_can($item[1])) 
+			if (array_key_exists($key,$altmenu) and current_user_can($item[1])) 
 			{
 				// What's the link ?
-				$menu_hook = get_plugin_page_hook($item[2], $k);
+				$menu_hook = get_plugin_page_hook($item[2], $key);
 				if (file_exists(ABSPATH . "wp-content/plugins/{$item[2]}") || ! empty($menu_hook)) 
 				{
 					$mtype = "<img src='" . $ipath . "plugin.png' height='16' width='16' alt=''/>&nbsp;";
-					if(! aws_top_menu_plugin( $altmenu[$k]['name'] ))
+					if(! lad_top_menu_plugin( $altmenu[$key]['name'] ))
 					{
-						$link = get_settings('siteurl') . "/wp-admin/admin.php?page={$item[2]}";
+						$link = get_option('siteurl') . "/wp-admin/admin.php?page={$item[2]}";
 					} else {
-						$link = get_settings('siteurl') . "/wp-admin/{$k}?page={$item[2]}";
+						$link = get_option('siteurl') . "/wp-admin/{$key}?page={$item[2]}";
 					}
 				} else {
-					$icon = aws_add_icons($item[0]);
+					$icon = lad_add_icons($item[0]);
 					$mtype = "<img src='" . $ipath . $icon . "' height='16' width='16' alt=''/>&nbsp;"; 
-					$link = get_settings('siteurl') . "/wp-admin/{$item[2]}";
+					$link = get_option('siteurl') . "/wp-admin/{$item[2]}";
 				}
-				$altmenu[$k]['sub'][$item[2]]['url'] = $link;
+				$altmenu[$key]['sub'][$item[2]]['url'] = $link;
 				
 				// Is it current page ?
 				$class = '';
-				if ( (isset($plugin_page) && $plugin_page == $item[2] && $pagenow == $k) || (!isset($plugin_page) && $self == $item[2] ) ) $class=" class='current'";
+				if ( (isset($plugin_page) && $plugin_page == $item[2] && $pagenow == $key) || (!isset($plugin_page) && $self == $item[2] ) ) $class=" class='current'";
 				if ($class) 
 				{
-					$altmenu[$k]['sub'][$item[2]]['class'] = $class;
-					$altmenu[$k]['class'] = $class;
+					$altmenu[$key]['sub'][$item[2]]['class'] = $class;
+					$altmenu[$key]['class'] = $class;
 				}
 				// What's its name again ?
-				$altmenu[$k]['sub'][$item[2]]['name'] = $item[0];
-				$altmenu[$k]['sub'][$item[2]]['icon'] = $mtype;	
+				$altmenu[$key]['sub'][$item[2]]['name'] = $item[0];
+				$altmenu[$key]['sub'][$item[2]]['icon'] = $mtype;	
 			}
 		}
 	}
 	return ($altmenu);
 }
 
-// Support Routines:
-// ===========================================================================
-/* The javascript bits that replace the existing menu by our new one */
-function aws_adminmenu_printjs ($admin = '', $sub = 1) 
+function lad_check_orphans($menu) // obsolete: if any top level menus have no submenu then adds the single menu item as a sub (for IE table fix)
+{
+	global $ipath;
+	
+	foreach ($menu as $key=>$value)
+	{
+		if (!is_array($value['sub']))
+		{
+			$menu[$key]['sub'][$key]['url'] = $value['url'];
+			$menu[$key]['sub'][$key]['name'] = $value['name'];
+			$icon = lad_add_icons($value['name']);
+			$menu[$key]['sub'][$key]['icon'] = "<img src='" . $ipath . $icon . "' height='16' width='16' alt=''/>&nbsp;";
+		}
+	}
+	return $menu;
+}
+
+
+function lad_adminmenu() // creates the new set of <ul> and <li> for the admin menus
+{
+	global $is_winIE;
+	global $plugin_uri;
+	global $ipath;
+
+	$ipath = trailingslashit($plugin_uri . '/images/');
+
+	$menu = lad_adminmenu_build();
+	/*$menu = lad_check_orphans($menu);*/ //uselesssss
+
+	$ladaut_menu = '';
+	$printsub = 1;
+	$iecode='';
+	
+	foreach ($menu as $key=>$value) 
+	{
+		$url 	= $value['url'];
+		$anchor = str_replace('"', '\"', $value['name']);
+		$class	= $value['class'];
+
+		$iecode = '';
+		$ladaut_menu .= '<li><a' . $iecode . " href='$url'$class>$anchor";
+		
+		if ($is_winIE)
+		{
+			$ladaut_menu .= '<table><tr><td>'; //folks ask why I hate IE
+		} else {
+			$ladaut_menu .= '</a>';
+		}
+
+		if (is_array($value['sub'])) 
+		{
+			$ulclass='';
+			if ($class) $ulclass = " class='ulcurrent'";
+			$ladaut_menu .= "<ul$ulclass>";
+
+			foreach ($value['sub'] as $subkey=>$subvalue) 
+			{
+				$suburl = $subvalue['url'];
+				$subanchor = str_replace('"', '\"', $subvalue['icon'] . '' . $subvalue['name']);
+				$subclass='';
+				if (array_key_exists('class',$subvalue)) $subclass=$subvalue['class'];
+				$ladaut_menu .= "<li><a href='$suburl'".$subclass.">".$subanchor."</a></li>";
+			}
+			$ladaut_menu .= "</ul>";
+		} else {
+			$ladaut_menu .= "";//"<ul><li></li></ul>"; //useless we don't want empty/repeat menus
+			if ($class) $printsub = 0;
+		}
+		
+		if ($is_winIE)
+		{
+			$ladaut_menu .= "</td></tr></table></a></li>";
+		}
+		
+		$ladaut_menu .="</li> ";			
+	}
+	
+	lad_adminmenu_printjs($ladaut_menu, $printsub);
+}
+
+function lad_adminmenu_printjs ($admin = '', $sub = 1) //The javascript bits that replace the existing menu by our new one 
 {
 	print "<script>
 	document.getElementById('adminmenu').innerHTML=\"$admin\";";
@@ -198,49 +202,18 @@ function aws_adminmenu_printjs ($admin = '', $sub = 1)
 	print "</script>";
 }
 
-// WP2.1 array correction due to the swap of manage/edit post/page at top level. This won't be used since it breaks translations of wordpress
-function aws_correct_core_menus()
+function lad_top_menu_plugin($menuname)
 {
-	global $menu;
-
-	 //make some corrections
-	$menu[5][0] = "Write";
-	$menu[5][1] = "edit_posts";
-	$menu[5][2] = "post-new.php";
-	$menu[10][0] = "Manage";
-	$menu[10][1] = "edit_posts";
-	$menu[10][2] = "edit.php";	
-}
-
-function aws_top_menu_plugin($menuname)
-{
-	if(strpos(' Dashboard Write Manage Blogroll Presentation Plugins Users Options', $menuname))
+	if(strpos(' Dashboard Write Manage Design Comments Settings Plugins Users', $menuname))
 	{
 		return true;
 	}
 	return false;
 }
 
-// if any top level menus have no submenu then adds the single menu item as a sub (for IE table fix)
-function aws_check_orphans($menu)
-{
-	global $ipath;
-	
-	foreach ($menu as $k=>$v)
-	{
-		if (!is_array($v['sub'])) 
-		{
-			$menu[$k]['sub'][$k]['url'] = $v['url'];
-			$menu[$k]['sub'][$k]['name'] = $v['name'];
-			$icon = aws_add_icons($v['name']);
-			$menu[$k]['sub'][$k]['icon'] = "<img src='" . $ipath . $icon . "' height='16' width='16' alt=''/>&nbsp;";
-		}
-	}
-	return $menu;
-}
 
-// add the icons to the sub menu items
-function aws_add_icons($menuitem)
+
+function lad_add_icons($menuitem) // add the icons to the sub menu items
 {
 	switch(substr($menuitem, 0, 21))
 	{
@@ -356,9 +329,7 @@ function aws_add_icons($menuitem)
 }
 
 // wp action hooks
-// ====================================
-
-add_action('admin_head', 'aws_header');
-add_action('admin_footer', 'aws_adminmenu');
+add_action('admin_head', 'lad_header');
+add_action('admin_footer', 'lad_adminmenu');
 
 ?>

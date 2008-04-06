@@ -4,7 +4,7 @@ Contributors: corpodibacco
 Tags: menu, admin, css, light
 Requires at least: 2.5
 Tested up to: 2.5
-Stable tag: 2.5.3
+Stable tag: 2.5.4
 
 Creates Drop Down Menus for WordPress Admin Panels. Fast to load and adaptable to customizations. Comes with silk icons and a design that fits within the Wordpress 2.5 interface taking the less room possible.
 
@@ -30,6 +30,7 @@ This plugin creates Drop Down Menus for WordPress Admin Panels. Fast to load and
 
 == Changelog ==
 
+* 2.5.4 fixed the awaiting comments alert and other minor glitches. Cleaned the code a good deal. Recommended.
 * 2.5.3 slight redesign to favor smooth corners in the menus. 
 * 2.5.2 small fixes (thanks to Robert!) and a slight redesign favoring the "tab" effect. Also FF 2 and IE 7 look more alike now.
 * 2.5.1 small fixes

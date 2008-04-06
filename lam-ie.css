@@ -1,19 +1,10 @@
-/* ==  Lighter Admin Drop Menus 2.5.2 (Win IE Only) CSS (All Browsers) - italyisfalling.com == */
-
-#adminmenu table {
-	border: none !important;
-	}
-#adminmenu {height: 27px;
-z-index:100;}	
+#adminmenu {
+	height: 27px;
+}	
 	
 #adminmenu li a:hover {
 	border:0px;
 	padding-bottom:2px;
-	z-index:99;
-	}
-
-#adminmenu table {
-	margin: 0px;
 	}
 
 #adminmenu li a, #adminmenu li a:visited {
@@ -21,12 +12,20 @@ z-index:100;}
 	line-height: 200%;
 	}
 	
+#adminmenu li:hover a{
+	height:auto;	
+}
+
+#adminmenu li a #awaiting-mod {
+	margin-left: -0.2em;
+	margin-top: 0.1em;
+}
+
 #adminmenu li a:hover ul {
 	display: block; 
 	position: absolute; 
 	left: -40px;
 	margin-top:0px;
-	z-index:98;
 	}
 	
 #adminmenu li a:hover ul li a {

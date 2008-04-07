@@ -1,5 +1,4 @@
 === Lighter Admin Drop Menus ===
-Plugin Name: Lighter Admin Drop Menus
 Contributors: corpodibacco
 Tags: menu, admin, css, light
 Requires at least: 2.5

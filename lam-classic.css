@@ -1,103 +1,27 @@
-#sidemenu, #dashmenu {
-	display: none;
-}
+#adminmenu .speciall {color:#ccc}
 
-#media-upload-header #sidemenu {
-	display: block;
-}
+#wphead {border-bottom-color:#07273E;}
 
-#wphead {
-	margin-bottom: 10px;
-	border-bottom: solid 1px #07273E;
-}
-
-#adminmenu {
-	top:0;
-	left:0;
-	position:absolute;
-	height: 24px;
-	background-color:#07273E;
-	list-style: none;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	padding-top:3px;
-	border:none;
-	z-index: 1;	
-	}	
-
-#user_info{
-	z-index: 2;
-}
-
-#adminmenu a {
-	text-decoration: none;
-	}
+#adminmenu {background-color:#07273E;}	
 	
-#adminmenu a.current {
-	-moz-border-radius-topleft: 2px;
-	-moz-border-radius-topright: 2px;
-	-khtml-border-top-left-radius: 2px;
-	-khtml-border-top-right-radius: 2px;
-	-webkit-border-top-left-radius: 2px;
-	-webkit-border-top-right-radius: 2px;
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
-	z-index: 5;	
-	}
-	
-#adminmenu li {	
-	float:left;
-	position:relative;
-	text-align: left;
-	}
-	
-#adminmenu li a {
-	display:block;
-	text-decoration:none;
-	padding: 0px 10px 0px 11px;
-	color: #88B4D7;
-	font-weight: normal;
-	font-size:small;
-	z-index: 4;
-	}	
-
-#adminmenu li a #awaiting-mod {
-	margin-left: -0.1em;
-	margin-top: 0.6em;
-	z-index: 6;
-}
+#adminmenu li a {color: #88B4D7;}	
 
 #adminmenu li ul {
-	display: none;
-	list-style-type: none;
-	border-left: solid 1px #14568A;
-	border-right: solid 1px #14568A;
-	border-bottom: solid 1px #14568A;
-	-moz-border-radius-bottomleft:4px;
-	-moz-border-radius-bottomright:4px;
-	-khtml-border-bottom-left-radius:4px;
-	-khtml-border-bottom-right-radius:4px;
-	-webkit-border-bottom-left-radius:4px;
-	-webkit-border-bottom-right-radius:4px;
-	border-bottom-left-radius:4px;
-	border-bottom-right-radius:4px;	
-	padding:0px;
-	padding-bottom:10px; /*crucial for the radius*/
-	padding-top:8px;
-	width:200px;
+
+	border-top-color:#07273E;
+	border-left-color:#14568A;
+	border-right-color:#14568A;
+	border-bottom-color:#14568A;
 	background-color:#07273E;
-	z-index: 3;		
 	}
 	
 #adminmenu a.current {
 	color:#CFEBF6;
 	background-color:#14568A;
-	border:0px;
 	}
 	
 #adminmenu li:hover a.current {
-	background-color:07273E;
+	background-color:#07273E;
 	color:#FFF
 	
 	}	
@@ -105,29 +29,11 @@
 #adminmenu li:hover a{
 	color:#fff;
 	background-color:#07273E;
-	height: 27px;	
 }
-
-#adminmenu li:hover ul {
-	display:block;
-	position:absolute;
-	left:-1px;
-	top:27px;
-	}
 
 #adminmenu li:hover ul li a {
 	background-color:#07273E;
 	color:#D7D7D7;	
-	font-size:small;
-	line-height: 110%;	
-	margin-top: 0px;
-	margin-bottom:0px;	
-	padding-top:5px;
-	padding-bottom:5px;
-	padding-right:10px;
-	padding-left:10px;	
-	width:180px;
-	height:auto;	
 	}
 	
 #adminmenu li:hover ul li a:hover {
@@ -138,24 +44,4 @@
 #adminmenu li:hover ul li a.current {
 	background-color:#14568A;
 	color:#CCC;
-	-moz-border-radius-bottomleft:0px;
-	-moz-border-radius-bottomright:0px;
-	-moz-border-radius-topright: 0px;
-	-moz-border-radius-topleft: 0px;
-	-khtml-border-top-left-radius: 0px;
-	-khtml-border-top-right-radius: 0px;
-	-webkit-border-top-left-radius: 0px;
-	-webkit-border-top-right-radius: 0px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	}
-	
-	
-	
-	#adminmenu li:hover ul li a:hover {color:#FFF}
-	
-.current {
-	font-weight: normal !important;
-	}
-	
-#submenu, #submenu .current, #submenu a, #submenu a:hover, #submenu li {display:none}
+	}	

@@ -3,7 +3,7 @@ Contributors: corpodibacco
 Tags: menu, admin, css, light
 Requires at least: 2.5
 Tested up to: 2.5
-Stable tag: 2.5.5
+Stable tag: 2.5.6
 
 Creates Drop Down Menus for WordPress Admin Panels. Fast to load and adaptable to customizations. Comes with silk icons and a design that fits within the Wordpress 2.5 interface taking the less room possible.
 
@@ -29,7 +29,8 @@ This plugin creates Drop Down Menus for WordPress Admin Panels. Fast to load and
 
 == Changelog ==
 
-* 2.5.5 idiot me, I never realized Wordpress 2.5 had two color schemes (thanks tonchi!). Lighter admin menus now adapts to this, quite beautifully I must say.
+* 2.5.6 OK, I think things just went out of hand. Thir update in a day. Anyway, what I did here was to distinguish chromatically the elements of the menu accordingly to Wordpress 2.5, and sliding to the right the three that WP imagines as separated by the main menu. What do you think? Let me know. Other than this, I kind of have the feeling this plugin is not so "light" as it was supposed to be. But maybe I am wrong. I'll welcome your impressions.
+* 2.5.5 idiot me, I never realized Wordpress 2.5 had two color schemes (thanks tonchi!). Lighter admin menus now adapts to this, quite beautifully I must say. Also very important fix: the menu now gives feedback when editing posts and pages (it failed to before).
 * 2.5.4 fixed the awaiting comments alert and other minor glitches. Cleaned the code a good deal. Recommended.
 * 2.5.3 slight redesign to favor smooth corners in the menus. 
 * 2.5.2 small fixes (thanks to Robert!) and a slight redesign favoring the "tab" effect. Also FF 2 and IE 7 look more alike now.

@@ -8,7 +8,7 @@
 
 #wphead {
 	margin-bottom: 10px;
-	border-bottom: solid 1px #C6D9E9;
+	border-bottom: solid 1px #07273E;
 }
 
 #adminmenu {
@@ -16,7 +16,7 @@
 	left:0;
 	position:absolute;
 	height: 24px;
-	background-color:#464646;
+	background-color:#07273E;
 	list-style: none;
 	list-style-type: none;
 	margin: 0;
@@ -56,7 +56,7 @@
 	display:block;
 	text-decoration:none;
 	padding: 0px 10px 0px 11px;
-	color: #D7D7D7;
+	color: #88B4D7;
 	font-weight: normal;
 	font-size:small;
 	z-index: 4;
@@ -71,9 +71,9 @@
 #adminmenu li ul {
 	display: none;
 	list-style-type: none;
-	border-left: solid 1px #FFF;
-	border-right: solid 1px #FFF;
-	border-bottom: solid 1px #FFF;
+	border-left: solid 1px #14568A;
+	border-right: solid 1px #14568A;
+	border-bottom: solid 1px #14568A;
 	-moz-border-radius-bottomleft:4px;
 	-moz-border-radius-bottomright:4px;
 	-khtml-border-bottom-left-radius:4px;
@@ -86,24 +86,25 @@
 	padding-bottom:10px; /*crucial for the radius*/
 	padding-top:8px;
 	width:200px;
-	background-color:#464646;
+	background-color:#07273E;
 	z-index: 3;		
 	}
 	
-#adminmenu a.current,#adminmenu li:hover a.current {
-	color:#2c2c2c;
-	background-color:#E4F2FD;
+#adminmenu a.current {
+	color:#CFEBF6;
+	background-color:#14568A;
 	border:0px;
 	}
+	
 #adminmenu li:hover a.current {
-	color:#FFF;
-	background-color:#464646;	
+	background-color:07273E;
+	color:#FFF
+	
 	}	
-
 	
 #adminmenu li:hover a{
 	color:#fff;
-	background-color:#464646;
+	background-color:#07273E;
 	height: 27px;	
 }
 
@@ -115,7 +116,7 @@
 	}
 
 #adminmenu li:hover ul li a {
-	background-color:#464646;
+	background-color:#07273E;
 	color:#D7D7D7;	
 	font-size:small;
 	line-height: 110%;	
@@ -130,13 +131,13 @@
 	}
 	
 #adminmenu li:hover ul li a:hover {
-	background-color:#E4F2FD;
-	color:#993300;
+	background-color:#14568A;
+	color:#FFF;
 	}
 	
 #adminmenu li:hover ul li a.current {
-	background-color:#E4F2FD;
-	color:#555;
+	background-color:#14568A;
+	color:#CCC;
 	-moz-border-radius-bottomleft:0px;
 	-moz-border-radius-bottomright:0px;
 	-moz-border-radius-topright: 0px;
@@ -148,6 +149,10 @@
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 	}
+	
+	
+	
+	#adminmenu li:hover ul li a:hover {color:#FFF}
 	
 .current {
 	font-weight: normal !important;

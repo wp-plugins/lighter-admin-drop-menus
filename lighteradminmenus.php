@@ -3,7 +3,7 @@
 Plugin Name: Lighter Admin Drop Menus
 Plugin URI: http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load and adaptable to customizations. Comes with silk icons and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.5.4
+Version: 2.5.5
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.5
@@ -32,13 +32,14 @@ function lad_header() // Set the stylesheet to replace wp-admin.css
 
 	$dir = basename(dirname(__FILE__));
 	$plugin_uri= trailingslashit(get_option('siteurl')) . 'wp-content/plugins/' . $dir;
-
-	echo '<link rel="stylesheet" type="text/css" href="' . $plugin_uri . '/lam.css" />' . "\n";
 	
-	if ($is_winIE)
-	{
-		echo '<link rel="stylesheet" type="text/css" href="' . $plugin_uri . '/lam-ie.css" />' . "\n";
+	$color = get_user_option('admin_color');
+	if ( empty($color) || $color == 'fresh' ) {	
+		echo '<link rel="stylesheet" type="text/css" href="' . $plugin_uri . '/lam.css" />' . "\n";		
+	} else {	
+		echo '<link rel="stylesheet" type="text/css" href="' . $plugin_uri . '/lam-classic.css" />' . "\n";			
 	}
+		if ($is_winIE) echo '<link rel="stylesheet" type="text/css" href="' . $plugin_uri . '/lam-ie.css" />' . "\n";	
 }
 
 function lad_adminmenu_build () // builds an array populated with all the infos needed for menu and submenu

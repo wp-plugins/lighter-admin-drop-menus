@@ -115,23 +115,6 @@ function lad_adminmenu_build () // builds an array populated with all the infos 
 	return ($altmenu);
 }
 
-function lad_check_orphans($menu) // obsolete: if any top level menus have no submenu then adds the single menu item as a sub (for IE table fix)
-{
-	global $ipath;
-	
-	foreach ($menu as $key=>$value)
-	{
-		if (!is_array($value['sub']))
-		{
-			$menu[$key]['sub'][$key]['url'] = $value['url'];
-			$menu[$key]['sub'][$key]['name'] = $value['name'];
-			$icon = lad_add_icons($value['name']);
-			$menu[$key]['sub'][$key]['icon'] = "<img src='" . $ipath . $icon . "' height='16' width='16' alt=''/>&nbsp;";
-		}
-	}
-	return $menu;
-}
-
 
 function lad_adminmenu() // creates the new set of <ul> and <li> for the admin menus
 {
@@ -142,7 +125,6 @@ function lad_adminmenu() // creates the new set of <ul> and <li> for the admin m
 	$ipath = trailingslashit($plugin_uri . '/images/');
 
 	$menu = lad_adminmenu_build();
-	/*$menu = lad_check_orphans($menu);*/ //uselesssss
 
 	$ladaut_menu = '';
 	$printsub = 1;
@@ -180,7 +162,7 @@ function lad_adminmenu() // creates the new set of <ul> and <li> for the admin m
 			}
 			$ladaut_menu .= "</ul>";
 		} else {
-			$ladaut_menu .= "";//"<ul><li></li></ul>"; //useless we don't want empty/repeat menus
+			$ladaut_menu .= "";
 			if ($class) $printsub = 0;
 		}
 		

@@ -1,6 +1,8 @@
 #adminmenu {
-	height: 27px;
+	height: 34px;
 }	
+
+#wphead{border-top-width: 37px;}
 	
 #adminmenu li a:hover {
 	border:0px;
@@ -20,6 +22,10 @@
 	margin-left: -0.2em;
 	margin-top: 0.1em;
 }
+#adminmenu li:hover ul {
+
+	top:34px;
+	}
 
 #adminmenu li a:hover ul {
 	display: block; 

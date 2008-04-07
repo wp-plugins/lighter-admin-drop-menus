@@ -20,7 +20,7 @@ This plugin creates Drop Down Menus for WordPress Admin Panels. Fast to load and
 
 3. The plugin under Opera 9.x
 
-4. Thr plugin with Safari for windows
+4. Thr plugin with Safari for windows. Classic color scheme.
 
 == Installation ==
 

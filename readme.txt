@@ -16,7 +16,7 @@ This plugin creates Drop Down Menus for WordPress Admin Panels. Fast to load and
 
 1. The plugin at work under Firefox 2.x.
 
-2. The plugin at work under Internet Explorer 7.
+2. The plugin at work under Internet Explorer 7. Classic color scheme.
 
 3. The plugin under Opera 9.x
 

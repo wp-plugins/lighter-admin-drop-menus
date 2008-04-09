@@ -3,7 +3,7 @@
 Plugin Name: Lighter Admin Drop Menus
 Plugin URI: http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.5.7
+Version: 2.5.8
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.5
@@ -124,14 +124,13 @@ function lad_header(){ // Set the stylesheets
 		padding: 0;
 		padding-top:3px;
 		border:none;
-		z-index: 1;	
+		z-index: 3;	
 		}	
-	#user_info{z-index: 2}	
 	#adminmenu a {text-decoration: none}		
 	#adminmenu a.current {
 		-moz-border-radius-topleft: 2px;
 		-moz-border-radius-topright: 2px;
-		z-index: 5;	
+		z-index: 5;
 		}		
 	#adminmenu li {	
 		float:left;
@@ -144,7 +143,6 @@ function lad_header(){ // Set the stylesheets
 		padding: 0px 10px 0px 11px;
 		font-weight: normal;
 		font-size:small;
-		z-index: 4;
 		}	
 	#adminmenu li a #awaiting-mod {
 		margin-left: -0.1em;
@@ -156,16 +154,16 @@ function lad_header(){ // Set the stylesheets
 		list-style-type: none;
 		border-style:solid;
 		border-width:1px;
-		border-top:0px;
+		border-top:none;      /* comment this to have smooth opposite corners at the top of the menus */
 		-moz-border-radius-bottomleft:4px;
 		-moz-border-radius-bottomright:4px;
 		padding:0px;
-		padding-bottom:10px; /*crucial for the radius*/
+		padding-bottom:10px;
 		padding-top:8px;
-		width:200px;
-		z-index: 3;		
+		min-width:160px;
+		z-index: 4;
 		}		
-	#adminmenu a.current,#adminmenu li:hover a.current {border:0px;}	
+	#adminmenu a.current,#adminmenu li:hover a.current {border:0px;}
 	#adminmenu li:hover a{height: 27px;}	
 	#adminmenu li:hover ul {
 		display:block;
@@ -182,23 +180,21 @@ function lad_header(){ // Set the stylesheets
 		padding-bottom:3px;
 		padding-right:10px;
 		padding-left:10px;	
-		width:180px;
+		min-width:140px;
 		height:auto;	
-		}	
+		}
+	#adminmenu li:hover ul li {width:100%}
 	#adminmenu li:hover ul li a.current {
 		-moz-border-radius-bottomleft:0px;
 		-moz-border-radius-bottomright:0px;
 		-moz-border-radius-topright: 0px;
 		-moz-border-radius-topleft: 0px;
-		}		
-	.current {
-		font-weight: normal !important;
-		}		
+		}
 	#submenu, #submenu .current, #submenu a, #submenu a:hover, #submenu li {display:none}
 	    
     <?php if ($is_winIE) { /*IE specific */ ?>	
 	
-	#adminmenu {height: 35px;}		
+	#adminmenu {height: 35px; }		
 	#wphead{border-top-width: 38px;}
 	#adminmenu li a:hover {
 		border:0px;
@@ -218,12 +214,13 @@ function lad_header(){ // Set the stylesheets
 	#adminmenu li a:hover ul {
 		display: block; 
 		position: absolute; 
-		left: -40px;
+		left: -41px;
 		margin-top:0px;
 		}		
+	#adminmenu li a:hover ul li{padding-top:0px;}
 	#adminmenu li a:hover ul li a {
 		display: block;
-		height: auto;
+		height: auto;		
 		}
 		
 	<?php } 
@@ -237,6 +234,7 @@ function lad_header(){ // Set the stylesheets
 	#adminmenu {background-color:#464646;}			
 	#adminmenu li a {color: #D7D7D7;}			
 	#adminmenu li ul {
+		border-top-color:#464646;
 		border-left-color:#FFF;
 		border-right-color:#FFF;
 		border-bottom-color:#FFF;
@@ -265,8 +263,11 @@ function lad_header(){ // Set the stylesheets
 	#adminmenu li:hover ul li a.current {
 		background-color:#E4F2FD;
 		color:#555;
-		}       
-        	
+		}		
+	#adminmenu li:hover ul li a.current:hover{
+		background-color:#E4F2FD;
+		color:#993300;
+		}          	
 	<?php } else {	/*scheme classic*/   
     
 	if ($separatemenus == '1') { ?>
@@ -305,7 +306,11 @@ function lad_header(){ // Set the stylesheets
 	#adminmenu li:hover ul li a.current {
 		background-color:#14568A;
 		color:#CCC;
-		} 		
+		}
+	#adminmenu li:hover ul li a.current:hover{
+		background-color:#14568A;
+		color:#FFF;
+		}  	
 	<?php } ?>	
 	</style>	
 	<?php }

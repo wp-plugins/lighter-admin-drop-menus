@@ -32,7 +32,7 @@ This plugin creates Drop Down Menus for WordPress Admin Panels. Fast to load and
 
 == Changelog ==
 
-* 2.5.8 Fixed a problem whith other plugins adding very long menu entries. Now menus widen and narrow at ease. Thanks to Karl for pointing this out.
+* 2.5.8 Fixed a issue with other plugins adding extra long menu entries. Now menus widen and narrow at ease. Thanks to Karl for pointing out this.
 * 2.5.7 Added a nifty option page where you can toggle a couple of customizations, like menu icons. For your convenience, the necessary files of the plugin now consist in just one file "lighteradminmenus.php", and the "images" folder. All the css files are now integrated and can be removed from the plugin folder after the upgrade.
 * 2.5.6 Tried to distinguish chromatically the elements of the menu accordingly to Wordpress 2.5,  sliding them to the right in the main menu. Maybe a good idea, maybe not. Let me know.
 * 2.5.5 I never realized Wordpress 2.5 had two color schemes (thanks tonchi!). Lighter admin menus now adapts to this, quite beautifully I must say. Also very important fix: the menu now gives feedback when editing posts and pages (it failed to before).

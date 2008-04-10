@@ -708,13 +708,13 @@ function lad_option_page(){
 	<fieldset><legend>Icons</legend>
     <img src="<?php echo LIGHTER_PATH; ?>/images/icons.png" style="border:none; margin-right:10px; vertical-align:middle"/>
     <input type="checkbox" name="disp_ico" value="1" <?php echo $displayicons_selected ?>>
-    Check if you want to display the icons in the top down menus.
+    Check if you want to display the icons in the menus.
     </fieldset>
 	
 	<fieldset><legend>Menus</legend>
     <img src="<?php echo LIGHTER_PATH; ?>/images/menus.png" style="border:none; margin-right:10px; vertical-align:middle"/>
     <input type="checkbox" name="sep_menu" value="1" <?php echo $separatemenus_selected ?> >
-	Check to keep the "Plugin" "Settings" and "Users" to the right side of the main menu (with a darker color).</p>	
+	Check to lowlight and keep the "Plugin" "Settings" and "Users" to the right side of the main menu.</p>	
 	</fieldset>
     <input type="hidden" name="update" value="yes" />
 	<div class="submit"><input type="submit" value="Update Options &raquo;" /></div>

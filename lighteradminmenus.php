@@ -719,7 +719,14 @@ function lad_option_page(){
     <input type="hidden" name="update" value="yes" />
 	<div class="submit"><input type="submit" value="Update Options &raquo;" /></div>
 	</form>
-    </div></div>
+    </div><div style="margin-top:10px; padding:2px; margin:auto; text-align:center;" >
+    <ul><li style="display:inline;list-style:none;">
+    <a href="http://www.italyisfalling.com/http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin/">Plugin's Homepage</a> | </li>
+    <!--<li style="line-height:1em;display:inline;list-style:none;letter-spacing:0.5%;">Donate | </li>-->
+    <li style="display:inline;list-style:none;"><a href="http://www.italyisfalling.com/coding">Other plugins</a></li>
+    </ul></div>  </div>    
+      
+    
     <?php
 }
 

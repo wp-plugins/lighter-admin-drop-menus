@@ -1,6 +1,6 @@
 === Lighter Menus ===
 Contributors: corpodibacco
-Tags: menu, admin, css, light
+Tags: menu, admin, css, drop down, light
 Requires at least: 2.5
 Tested up to: 2.5
 Stable tag: 2.5.9
@@ -32,7 +32,7 @@ Lighter Menus creates Drop Down Menus instead of the regular Admin menus for Wor
 
 == Changelog ==
 
-* 2.5.9 Prepares Lighter menus for translation. Do come forward if you're willing to translate this plugin in your language, there are very few lines to translate. Only italian and default english are available so far (please check the "Technical note for Translators"). Also, I slightly changed the name of the plugin, I hated the old name, I hope you'll understand.
+* 2.5.9 This version prepared Lighter menus for localization. Do come forward if you're willing to translate this plugin in your language, there are very few lines to translate. Only italian and default english are available so far (please check the "Technical note for Translators"). Also, I slightly changed the name of the plugin, I hated the old name, I hope you'll understand.
 * 2.5.8 Fixed a issue with other plugins adding extra long menu entries. Now menus widen and narrow at ease. Thanks to Karl for pointing out this.
 * 2.5.7 Added a nifty option page where you can toggle a couple of customizations, like menu icons. For your convenience, the necessary files of the plugin now consist in just one file "lighteradminmenus.php", and the "images" folder. All the css files are now integrated and can be removed from the plugin folder after the upgrade.
 * 2.5.6 Tried to distinguish chromatically the elements of the menu accordingly to Wordpress 2.5,  sliding them to the right in the main menu. Maybe a good idea, maybe not. Let me know.

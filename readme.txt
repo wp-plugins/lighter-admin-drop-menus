@@ -27,7 +27,7 @@ Lighter Menus creates Drop Down Menus instead of the regular Admin menus for Wor
 
 1. Upload the entire content of lighter\_admin\_menus.zip to your `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Review the option page in "Design" > "Admin menus options"
+3. Review the option page in "Design" > "Lighter menus"
 4. Done. Enjoy.
 
 == Changelog ==

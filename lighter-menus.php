@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Lighter Admin Drop Menus
+Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
 Version: 2.5.8
@@ -9,12 +9,22 @@ Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.5
 */
 
-
+//few definitions
 $dir = basename(dirname(__FILE__));
 if ($dir == 'plugins') $dir = '';
 else $dir = $dir . '/';	
 define("LIGHTER_PATH", get_option("siteurl") . "/wp-content/plugins/" . $dir);
 
+//prepare for local
+$currentLocale = get_locale();
+if(!empty($currentLocale)) {
+	$moFile = ABSPATH . 'wp-content/plugins/' . $dir . 'lighter-menus-' . $currentLocale . ".mo";
+	//check if it is a window server and changes path accordingly
+	if ( strpos($moFile, '\\')) $moFile = str_replace('/','\\',$moFile); 
+	if(@file_exists($moFile) && is_readable($moFile)) load_textdomain('lighter-menus', $moFile);
+}
+
+//options in the database
 add_option('lad_display_icons', true);
 add_option('lad_separate_menus', true);
 
@@ -100,6 +110,7 @@ function lad_header(){ // Set the stylesheets
 	</SCRIPT>    	
 	<?php } ?>	
 	
+    <!--Lighter menus style-->
     <style type="text/css">	
 	<?php /*general style*/ 
 	
@@ -312,7 +323,8 @@ function lad_header(){ // Set the stylesheets
 		color:#FFF;
 		}  	
 	<?php } ?>	
-	</style>	
+	</style>
+    <!--end Lighter menu style-->
 	<?php }
 
 function lad_adminmenu_build (){ // builds an array populated with all the infos needed for menu and submenu
@@ -321,6 +333,14 @@ function lad_adminmenu_build (){ // builds an array populated with all the infos
 
 	$self = preg_replace('|^.*/wp-admin/|i', '', $_SERVER['PHP_SELF']);
 	$self = preg_replace('|^.*/plugins/|i', '', $self);
+	
+	/* Make sure that "Manage" always stays the same. I have no idea what's this is for. */
+	$menu[5][0] = __("Write");
+	$menu[5][1] = "edit_posts";
+	$menu[5][2] = "post-new.php";
+	$menu[10][0] = __("Manage");
+	$menu[10][1] = "edit_posts";
+	$menu[10][2] = "edit.php";
 
 	$altmenu = array();
 
@@ -701,42 +721,41 @@ function lad_option_page(){
 	?>	
 	
 	<div style="width:100%; margin:auto">	
-	<div class="wrap"><br/><h2>Lighter Admin Menus - Customization Options</h2><div id="stray_quotes_options">
-	These options can be used to customize the appearance of the menus. Refresh to appreciate the results.<br/><br/>
+	<div class="wrap"><br/><h2>Lighter Menus - <?php echo __('Customization Options','lighter-menus') ?></h2><div id="stray_quotes_options">
+	<?php echo __('These options can be used to customize the appearance of the menus. Refresh to appreciate the results.','lighter-menus') ?><br/><br/>
 
 	<form name="frm_options" method="post" action="<?php $_SERVER['REQUEST_URI'] ?>">	
 	<fieldset><legend>Icons</legend>
     <img src="<?php echo LIGHTER_PATH; ?>/images/icons.png" style="border:none; margin-right:10px; vertical-align:middle"/>
     <input type="checkbox" name="disp_ico" value="1" <?php echo $displayicons_selected ?>>
-    Check if you want to display the icons in the menus.
+    <?php echo __('Check if you want to display the icons in the menus.','lighter-menus') ?>
     </fieldset>
 	
 	<fieldset><legend>Menus</legend>
     <img src="<?php echo LIGHTER_PATH; ?>/images/menus.png" style="border:none; margin-right:10px; vertical-align:middle"/>
     <input type="checkbox" name="sep_menu" value="1" <?php echo $separatemenus_selected ?> >
-	Check to lowlight and keep the "Plugin" "Settings" and "Users" to the right side of the main menu.</p>	
+	<?php echo __('Check to lowlight and keep the "Plugin" "Settings" and "Users" to the right side of the main menu.','lighter-menus') ?></p>	
 	</fieldset>
     <input type="hidden" name="update" value="yes" />
 	<div class="submit"><input type="submit" value="Update Options &raquo;" /></div>
 	</form>
     </div><div style="margin-top:10px; padding:2px; margin:auto; text-align:center;" >
     <ul><li style="display:inline;list-style:none;">
-    <a href="http://www.italyisfalling.com/http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin/">Plugin's Homepage</a> | </li>
+    <a href="http://www.italyisfalling.com/http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin/">
+	<?php echo __('Plugin\'s Homepage','lighter-menus') ?></a> | </li>
     <!--<li style="line-height:1em;display:inline;list-style:none;letter-spacing:0.5%;">Donate | </li>-->
-    <li style="display:inline;list-style:none;"><a href="http://www.italyisfalling.com/coding">Other plugins</a></li>
-    </ul></div>  </div>    
-      
-    
+    <li style="display:inline;list-style:none;"><a href="http://www.italyisfalling.com/coding"><?php echo __('Other plugins','lighter-menus') ?></a></li>
+    </ul></div></div>   
     <?php
 }
 
 function lad_add_pages() {
 
-	add_theme_page( 'Lighter Admin Menus Options','Admin menus options', 9, basename(__FILE__), 'lad_option_page');
+	add_theme_page( __('Lighter Menus Options','lighter-menus'),'Lighter Menus', 9, basename(__FILE__), 'lad_option_page');
 }
 
 // wp action hooks
-add_action('admin_head', 'lad_header');
+add_action('admin_head', 'lad_header',0,99);
 add_action('admin_footer', 'lad_adminmenu');
 add_action('admin_menu', 'lad_add_pages');
 

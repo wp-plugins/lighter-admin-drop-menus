@@ -246,11 +246,11 @@ function lad_header(){
 		position: absolute; 
 		left: -41px;
 		margin-top:0px;
-		}		
-	#adminmenu li a:hover ul li{padding-top:0px;width:100%}
+		}
+	#adminmenu li a:hover ul li{padding-top:0px}
 	#adminmenu li a:hover ul li a {
 		display: block;
-		height: auto;		
+		height: auto;
 		}		
 	<?php } 
 	

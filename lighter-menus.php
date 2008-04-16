@@ -3,7 +3,7 @@
 Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.5.9
+Version: 2.6
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.5
@@ -28,7 +28,8 @@ if(!empty($currentLocale)) {
 add_option('lad_display_icons', true);
 add_option('lad_separate_menus', true);
 
-function lad_header(){ // Set the stylesheets
+// Set the stylesheets and scripts
+function lad_header(){ 
 
 	global $is_winIE;
 	global $plugin_uri;
@@ -112,8 +113,7 @@ function lad_header(){ // Set the stylesheets
 	
     <!--Lighter menus style-->
     <style type="text/css">	
-	<?php /*general style*/ 
-	
+	<?php /*general CSS*/ 	
 	if (!$displayicons) { /*in case you want no icons*/ ?>
 	#adminmenu img {display:none}
 	<?php } ?>	
@@ -141,6 +141,10 @@ function lad_header(){ // Set the stylesheets
 	#adminmenu a.current {
 		-moz-border-radius-topleft: 2px;
 		-moz-border-radius-topright: 2px;
+		border-top-left-radius: 2px;
+		border-top-right-radius: 2px;
+		-webkit-border-top-right-radius: 2px;
+		-webkit-border-top-left-radius: 2px;		
 		z-index: 5;
 		}		
 	#adminmenu li {	
@@ -165,15 +169,22 @@ function lad_header(){ // Set the stylesheets
 		list-style-type: none;
 		border-style:solid;
 		border-width:1px;
-		border-top:none;      /* comment this to have smooth opposite corners at the top of the menus */
+		border-top:none; /* comment this to have smooth opposite corners at the top of the menus */
 		-moz-border-radius-bottomleft:4px;
 		-moz-border-radius-bottomright:4px;
+		border-bottom-right-radius:4px;
+		border-bottom-left-radius:4px;
+		-webkit-border-bottom-right-radius:4px;
+		-webkit-border-bottom-left-radius:4px;		
 		padding:0px;
 		padding-bottom:10px;
 		padding-top:8px;
 		min-width:160px;
 		z-index: 4;
-		}		
+		}
+	#adminmenu li ul li {
+		float:none;
+	}			
 	#adminmenu a.current,#adminmenu li:hover a.current {border:0px;}
 	#adminmenu li:hover a{height: 27px;}	
 	#adminmenu li:hover ul {
@@ -198,13 +209,21 @@ function lad_header(){ // Set the stylesheets
 	#adminmenu li:hover ul li a.current {
 		-moz-border-radius-bottomleft:0px;
 		-moz-border-radius-bottomright:0px;
-		-moz-border-radius-topright: 0px;
-		-moz-border-radius-topleft: 0px;
+		-moz-border-radius-topright:0px;
+		-moz-border-radius-topleft:0px;
+		border-top-right-radius:0px;
+		border-bottom-right-radius:0px;
+		border-bottom-left-radius:0px;
+		border-top-left-radius:0px;
+		-webkit-border-top-right-radius:0px;
+		-webkit-border-top-left-radius:0px;
+		-webkit-border-bottom-left-radius:0px;
+		-webkit-border-bottom-right-radius:0px;
 		}
 	#submenu, #submenu .current, #submenu a, #submenu a:hover, #submenu li {display:none}
-	    
-    <?php if ($is_winIE) { /*IE specific */ ?>	
 	
+	<?php /*IE specific CSS */
+	if ($is_winIE) { ?>	
 	#adminmenu {height: 35px; }		
 	#wphead{border-top-width: 38px;}
 	#adminmenu li a:hover {
@@ -228,16 +247,19 @@ function lad_header(){ // Set the stylesheets
 		left: -41px;
 		margin-top:0px;
 		}		
-	#adminmenu li a:hover ul li{padding-top:0px;}
+	#adminmenu li a:hover ul li{padding-top:0px;width:100%}
 	#adminmenu li a:hover ul li a {
 		display: block;
 		height: auto;		
-		}
-		
+		}		
 	<?php } 
+	
+	/*Safari specific CSS */
+	if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'safari') !== false) {}
+	
 	$color = get_user_option('admin_color');
-	if ( empty($color) || $color == 'fresh' ) {	/* scheme fresh */
-		
+	/* scheme fresh CSS */
+	if ( empty($color) || $color == 'fresh' ) {		
 	if ($separatemenus == '1') { ?>
 	#adminmenu .speciall {color:#999}
 	<?php } ?>
@@ -279,8 +301,9 @@ function lad_header(){ // Set the stylesheets
 		background-color:#E4F2FD;
 		color:#993300;
 		}          	
-	<?php } else {	/*scheme classic*/   
-    
+		
+	<?php /*scheme classic CSS*/  	
+	} else {  
 	if ($separatemenus == '1') { ?>
 	#adminmenu .speciall {color:#ccc}
 	<?php } ?>
@@ -325,9 +348,11 @@ function lad_header(){ // Set the stylesheets
 	<?php } ?>	
 	</style>
     <!--end Lighter menu style-->
-	<?php }
+    
+<?php }
 
-function lad_adminmenu_build (){ // builds an array populated with all the infos needed for menu and submenu
+// builds an array populated with all the infos needed for menu and submenu
+function lad_adminmenu_build (){ 
 
 	global $menu, $submenu, $plugin_page, $pagenow;
 
@@ -389,7 +414,6 @@ function lad_adminmenu_build (){ // builds an array populated with all the infos
 	}
 
 	/* Step 2 : populate second level menu */
-
 	foreach ($submenu as $key=>$value)
 	{
 		foreach ($value as $item) 
@@ -460,8 +484,7 @@ function lad_adminmenu_build (){ // builds an array populated with all the infos
 			}
 		}
 
-		/* Step 4 : populate second level menu for settings,plugins an users  */
-	
+		/* Step 4 : populate second level menu for settings,plugins an users  */	
 		foreach ($submenu as $key=>$value)
 		{
 			foreach ($value as $item) 
@@ -505,7 +528,8 @@ function lad_adminmenu_build (){ // builds an array populated with all the infos
 	return ($altmenu);
 }
 
-function lad_adminmenu(){ // creates the new set of <ul> and <li> for the admin menus
+// creates the new set of <ul> and <li> for the admin menus
+function lad_adminmenu(){ 
 
 	global $is_winIE;
 
@@ -563,7 +587,8 @@ function lad_adminmenu(){ // creates the new set of <ul> and <li> for the admin 
 	lad_adminmenu_printjs($ladaut_menu, $printsub);	
 }
 
-function lad_adminmenu_printjs ($admin = '', $sub = 1) //The javascript bits that replace the existing menu by our new one 
+//The javascript bits that replace the existing menu by our new one 
+function lad_adminmenu_printjs ($admin = '', $sub = 1) 
 {
 	print "<script>
 	document.getElementById('adminmenu').innerHTML=\"$admin\";";
@@ -580,7 +605,8 @@ function lad_top_menu_plugin($menuname){
 	return false;
 }
 
-function lad_add_icons($menuitem){ // add the icons to the sub menu items
+// add the icons to the sub menu items
+function lad_add_icons($menuitem){ 
 
 	$displayicons = get_option("lad_display_icons");
 	if ($displayicons == "1") {

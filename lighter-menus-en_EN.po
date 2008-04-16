@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lighterMenus-en\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-15 15:59+0100\n"
+"POT-Creation-Date: 2008-04-16 02:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: corpodibacco <corpodibacco@italyisfalling.com>\n"
 "Language-Team: \n"
@@ -15,173 +15,173 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: lighter-menus.php:338
+#: lighter-menus.php:363
 msgid "Write"
 msgstr ""
 
-#: lighter-menus.php:341
+#: lighter-menus.php:366
 msgid "Manage"
 msgstr ""
 
-#: lighter-menus.php:589
+#: lighter-menus.php:615
 msgid "Dashboard"
 msgstr ""
 
-#: lighter-menus.php:593
+#: lighter-menus.php:619
 msgid "Post"
 msgstr ""
 
-#: lighter-menus.php:596
+#: lighter-menus.php:622
 msgid "Page"
 msgstr ""
 
-#: lighter-menus.php:599
+#: lighter-menus.php:625
 msgid "Link"
 msgstr ""
 
-#: lighter-menus.php:603
+#: lighter-menus.php:629
 msgid "Posts"
 msgstr ""
 
-#: lighter-menus.php:606
+#: lighter-menus.php:632
 msgid "Pages"
 msgstr ""
 
-#: lighter-menus.php:609
+#: lighter-menus.php:635
 msgid "Links"
 msgstr ""
 
-#: lighter-menus.php:612
+#: lighter-menus.php:638
 msgid "Tags"
 msgstr ""
 
-#: lighter-menus.php:615
+#: lighter-menus.php:641
 msgid "Link Categories"
 msgstr ""
 
-#: lighter-menus.php:618
+#: lighter-menus.php:644
 msgid "Media Library"
 msgstr ""
 
-#: lighter-menus.php:622
+#: lighter-menus.php:648
 msgid "Themes"
 msgstr ""
 
-#: lighter-menus.php:625
+#: lighter-menus.php:651
 msgid "Widgets"
 msgstr ""
 
-#: lighter-menus.php:628
+#: lighter-menus.php:654
 msgid "Theme Editor"
 msgstr ""
 
-#: lighter-menus.php:631
+#: lighter-menus.php:657
 msgid "Header Image and Color"
 msgstr ""
 
-#: lighter-menus.php:635
+#: lighter-menus.php:661
 msgid "Uploads"
 msgstr ""
 
-#: lighter-menus.php:638
+#: lighter-menus.php:664
 msgid "Categories"
 msgstr ""
 
-#: lighter-menus.php:641
+#: lighter-menus.php:667
 msgid "Comments"
 msgstr ""
 
-#: lighter-menus.php:644
+#: lighter-menus.php:670
 #, php-format
 msgid "Awaiting Moderation (%s)"
 msgstr ""
 
-#: lighter-menus.php:647
+#: lighter-menus.php:673
 msgid "Files"
 msgstr ""
 
-#: lighter-menus.php:650
+#: lighter-menus.php:676
 msgid "Import"
 msgstr ""
 
-#: lighter-menus.php:653
+#: lighter-menus.php:679
 msgid "Export"
 msgstr ""
 
-#: lighter-menus.php:656
+#: lighter-menus.php:682
 msgid "Import Links"
 msgstr ""
 
-#: lighter-menus.php:659
+#: lighter-menus.php:685
 msgid "Plugins"
 msgstr ""
 
-#: lighter-menus.php:662
+#: lighter-menus.php:688
 msgid "Plugin Editor"
 msgstr ""
 
-#: lighter-menus.php:665
+#: lighter-menus.php:691
 msgid "Your Profile"
 msgstr ""
 
-#: lighter-menus.php:668
-#: lighter-menus.php:693
+#: lighter-menus.php:694
+#: lighter-menus.php:719
 msgid "Authors &amp; Users"
 msgstr ""
 
-#: lighter-menus.php:671
+#: lighter-menus.php:697
 msgid "General"
 msgstr ""
 
-#: lighter-menus.php:674
+#: lighter-menus.php:700
 msgid "Writing"
 msgstr ""
 
-#: lighter-menus.php:677
+#: lighter-menus.php:703
 msgid "Reading"
 msgstr ""
 
-#: lighter-menus.php:680
+#: lighter-menus.php:706
 msgid "Discussion"
 msgstr ""
 
-#: lighter-menus.php:683
+#: lighter-menus.php:709
 msgid "Privacy"
 msgstr ""
 
-#: lighter-menus.php:686
+#: lighter-menus.php:712
 msgid "Permalinks"
 msgstr ""
 
-#: lighter-menus.php:689
+#: lighter-menus.php:715
 msgid "Miscellaneous"
 msgstr ""
 
-#: lighter-menus.php:724
+#: lighter-menus.php:750
 msgid "Customization Options"
 msgstr "Customization Options"
 
-#: lighter-menus.php:725
+#: lighter-menus.php:751
 msgid "These options can be used to customize the appearance of the menus. Refresh to appreciate the results."
 msgstr "These options can be used to customize the appearance of the menus. Refresh to appreciate the results."
 
-#: lighter-menus.php:731
+#: lighter-menus.php:757
 msgid "Check if you want to display the icons in the menus."
 msgstr "Check if you want to display the icons in the menus."
 
-#: lighter-menus.php:737
+#: lighter-menus.php:763
 msgid "Check to lowlight and keep the \"Plugin\" \"Settings\" and \"Users\" to the right side of the main menu."
 msgstr "Check to lowlight and keep the \"Plugin\" \"Settings\" and \"Users\" to the right side of the main menu."
 
-#: lighter-menus.php:745
+#: lighter-menus.php:771
 msgid "Plugin's Homepage"
 msgstr "Plugin's Homepage"
 
-#: lighter-menus.php:747
+#: lighter-menus.php:773
 msgid "Other plugins"
 msgstr "Other plugins"
 
-#: lighter-menus.php:754
+#: lighter-menus.php:780
 msgid "Lighter Menus Options"
 msgstr "Lighter Menus Options"
 

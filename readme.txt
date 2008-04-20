@@ -3,7 +3,7 @@ Contributors: corpodibacco
 Tags: menu, admin, css, drop down, light
 Requires at least: 2.5
 Tested up to: 2.5
-Stable tag: 2.6
+Stable tag: 2.6.1
 
 Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.5+.
 
@@ -26,12 +26,13 @@ Lighter Menus creates Drop Down Menus instead of the regular Admin menus for Wor
 == Installation ==
 
 1. Upload the entire content of lighter\_admin\_menus.zip to your `/wp-content/plugins/` directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
+2. Activate the plugin through the 'Plugins' menu in WordPress (deactivate and reactivate if you're upgrading).
 3. Review the option page in "Design" > "Lighter menus"
 4. Done. Enjoy.
 
 == Changelog ==
 
+* 2.6.1 This version adds an easy to use uninstaller to optionally remove every trace of Lighter Menus upon deactivation. This option can be found in the Design > Lighter Menus page. You won't notice, but this version also moves all the options in only one record in the database to occupy less space. Okay, there were only two records before, but still. IMPORTANT: because of the modified options, you are advised to deactivate and reactivate the plugin upon upgrading. Also in this version there are few small fixes. I always find small things to fix, I can't say why.
 * 2.6 Fixed a bug with Safari not adjusting the width of the menus correctly and other minor fixes.
 * 2.5.9 This version prepared Lighter menus for localization. Do come forward if you're willing to translate this plugin in your language, there are very few lines to translate. Only italian and default english are available so far (please check the "Technical note for Translators"). Also, I slightly changed the name of the plugin, I hated the old name, I hope you'll understand.
 * 2.5.8 Fixed a issue with other plugins adding extra long menu entries. Now menus widen and narrow at ease. Thanks to Karl for pointing out this.

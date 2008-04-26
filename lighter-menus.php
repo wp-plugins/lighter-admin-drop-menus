@@ -1077,8 +1077,8 @@ function lighter_activation() {
         $lmoptions['display_icons'] = $temp_1;
         $lmoptions['separate_menus'] = $temp_2;
 		$lmoptions['reduce_userinfo'] = '';
-		$lmoptions['hide_submenu'] = 1;
-		$lmoptions['max_plugins'] = 30;	
+		$lmoptions['hide_submenu'] = '1';
+		$lmoptions['max_plugins'] = '30';	
 		$lmoptions['uninstall'] = '';
 		$lmoptions['folder'] = '';
         add_option('lighter_options', $lmoptions);

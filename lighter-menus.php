@@ -697,6 +697,10 @@ function lm_css() {
 	height: 1.3em;
 	width: 1em;
 }
+#lm li a .count-0 {
+	display: none;
+}
+
 #lm li a:hover #awaiting-mod {
 	background-position: 0px bottom; /*was -80px but I have problems*/
 }

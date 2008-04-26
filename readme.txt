@@ -3,9 +3,9 @@ Contributors: corpodibacco
 Tags: menu, admin, css, drop down, light
 Requires at least: 2.5
 Tested up to: 2.5
-Stable tag: 2.6.1
+Stable tag: 2.6.5
 
-Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.5+.
+Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.5.1+.
 
 == Description ==
 
@@ -32,6 +32,7 @@ Lighter Menus creates Drop Down Menus instead of the regular Admin menus for Wor
 
 == Changelog ==
 
+* 2.6.5 This version rewamped almost entirely the most part of the code... It already was in a way, but this plugin is basically now an adaptation of the current Ozh's [Admin Drop Down Menus](http://planetozh.com/blog/my-projects/wordpress-admin-menu-drop-down-css/) plugin. Back to version 2.2 I had created Lighter Menus out of a plugin which already was a derivation of Ozh's plugin, although back then I had no idea (it was my first attempt at making a plugin). Lately I was hoping to take a more original direction with it and find my own solutions to the code challenges, but truth is "the wizard of" Ozh comes always first to solve the problems and find solutions, so I guess I am back at taking from him. Anyway, my plugin required many hours of hard work and still adds a number of features to Ozh's, including an option page (now with more options), more consistent colors and adaptation to color schemes (also custom ones), an uninstaller ecc. This update also fixes a lot of bugs and potential bugs compared to version 2.6.1, and also imports from Ozh a number of great features like WPMU support, the ability to optionally display the original submenu, and the wrapping of the main menu within smaller windows. Useless to say how much I am grateful to the man.
 * 2.6.1 This version adds an easy to use uninstaller to optionally remove every trace of Lighter Menus upon deactivation. This feature can be found in the Design > Lighter Menus page. You won't notice, but this version also moves all the options in only one record in the database to occupy less space. Okay, there were only two records before, but still. IMPORTANT: because of the modified options, you are advised to deactivate and reactivate the plugin upon upgrading. Also in this version there are few small fixes. I always find small things to fix, I can't say why.
 * 2.6 Fixed a bug with Safari not adjusting the width of the menus correctly and other minor fixes.
 * 2.5.9 This version prepared Lighter menus for localization. Do come forward if you're willing to translate this plugin in your language, there are very few lines to translate. Only italian and default english are available so far (please check the "Technical note for Translators"). Also, I slightly changed the name of the plugin, I hated the old name, I hope you'll understand.
@@ -45,7 +46,7 @@ Lighter Menus creates Drop Down Menus instead of the regular Admin menus for Wor
 * 2.5.1 small fixes
 * 2.5 redesigned to fit into wordpress 2.5.
 * 2.3 trying to fix a function that breaks translations of wordpress. We'll see.
-* 2.2 actually the first version of this plugin. It should be alpha something. But because I haven't changed a line of php code in it, it is only fair that the version number should depend on the plugin I used as the base for this
+* 2.2 actually the first version of this plugin. It should be alpha something. But because I haven't changed a line of php code in it, it is only fair that the version number should depend on the plugin I used as the base for this.
 
 == Technical Note for Translators ==
 

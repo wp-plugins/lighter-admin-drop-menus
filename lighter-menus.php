@@ -249,12 +249,10 @@ function lm_build () {
 
 function lm_js($menu = '') {
 	global $is_winIE, $pagenow;
-	$lmoptions = get_option('lighter_options');
-	
+	$lmoptions = get_option('lighter_options');	
 	if ($pagenow != "media-upload.php") { ?>
 	
 <script type="text/javascript"><!--//--><![CDATA[//><!--
-
 //preloading icons.I doubt this has any need to be.
 <?php if ($lmoptions['display_icons']) { ?>
 Image1=new Image(16,16)
@@ -428,7 +426,6 @@ function lm_resize() {
 		jQuery('#wphead').css('border-top-width', (lm_h+4)+'px'); 
 	}
 }
-
 jQuery(document).ready(function() {
 	// Remove unnecessary links in the top right corner 
 	<?php if ($lmoptions['reduce_userinfo']) { ?>
@@ -607,11 +604,11 @@ jQuery(document).ready(function() {
 function lm_css() {
 	global $pagenow, $is_winIE;
 	$lmoptions = get_option('lighter_options');	
-	if ($pagenow == "media-upload.php") $submenu = '';
-	if (($lmoptions['hide_submenu'] ) && ($pagenow != "media-upload.php")) $submenu = ', #wpwrap #submenu a';
-	else $submenu = '';	
-	if ( !$lmoptions['display_icons'] ) $icons = '#lm img {display:none}';
-	else $icons = ''; ?>
+	if ($pagenow != "media-upload.php")  {
+		if ( $lmoptions['hide_submenu'] ) $submenu = ', #wpwrap #submenu a';
+		else $submenu = '';	
+		if ( !$lmoptions['display_icons'] ) $icons = '#lm img {display:none}';
+		else $icons = ''; ?>
     
 <style type="text/css">	
 #sidemenu, #adminmenu, #dashmenu<?php print $submenu; ?> {display:none;}
@@ -734,7 +731,7 @@ function lm_css() {
 	position:relative;
 	top:0px;
 }
-#media-upload-header #sidemenu { display: block; }
+#media-upload-header #sidemenu { display: block;}
 #media-upload-header #sidemenu li {display:auto;}
 
 <?php if ($is_winIE) { ?>
@@ -764,7 +761,7 @@ function lm_css() {
 	padding-top:2px;
 }
 
-</style><?php
+</style><?php }
 }
 
 function lm_head() {

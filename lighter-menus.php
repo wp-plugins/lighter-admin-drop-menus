@@ -3,7 +3,7 @@
 Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-menus
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.6.5
+Version: 2.6.6
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.5
@@ -115,7 +115,7 @@ function lm_build () {
 			$altmenu[$item[2]]['class'] = " class='topcurrent'";
 			}else {
 				//it took me a while to figure out this NOT cool way to feedback when editing existing posts or pages. --corpodibacco
-				if ($item[0] == "Dashboard"){$altmenu[$sys_menu_file]['class'] = " class='sidemenu'";/*$item[0] = "Dashboard |";*/}				
+				if ($item[0] == "Dashboard"){$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";/*$item[0] = "Dashboard |";*/}				
 				elseif ( strpos($_SERVER['REQUEST_URI'], 'post.php?action') !== false && $item[2] == 'edit.php') 
 				$altmenu['edit.php']['class'] = " class='topcurrent'";
 				elseif ( strpos($_SERVER['REQUEST_URI'], 'page.php?action') !== false && $item[2] == 'edit.php') 
@@ -193,9 +193,9 @@ function lm_build () {
 				if (( strcmp ($self, $item[2])  == 0  && empty($parent_file) ) || ($parent_file && ($item[2] == $parent_file))) {
 					$altmenu[$item[2]]['class'] = " class='topcurrent'";
 				}else {
-					if ($item[0] == "Settings")$altmenu[$sys_menu_file]['class'] = " class='sidemenu'";
-					if ($item[0] == "Plugins")$altmenu[$sys_menu_file]['class'] = " class='sidemenu'";
-					if ($item[0] == "Users")$altmenu[$sys_menu_file]['class'] = " class='sidemenu'";						
+					if ($item[0] == "Settings")$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
+					if ($item[0] == "Plugins")$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
+					if ($item[0] == "Users")$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";						
 				}
 				
 				$altmenu[$item[2]]['name'] = $item[0];
@@ -248,8 +248,10 @@ function lm_build () {
 }
 
 function lm_js($menu = '') {
-	global $is_winIE;	
-	$lmoptions = get_option('lighter_options');	?>
+	global $is_winIE, $pagenow;
+	$lmoptions = get_option('lighter_options');
+	
+	if ($pagenow != "media-upload.php") { ?>
 	
 <script type="text/javascript"><!--//--><![CDATA[//><!--
 
@@ -325,54 +327,58 @@ Image34=new Image(16,16)
 Image34.src="<?php echo LIGHTER_PATH.'images/'; ?>group_key.png"	
 <?php } ?>
 //in case two colors are too similar, alter the first one
-function compare_colors (colore, sfondo) {		
-	colore1 = colore.substring(4,colore.length - 1).split(', ');
-	sfondo1 = sfondo.substring(4,sfondo.length - 1).split(', ');	
-	colore1 = parseInt(colore1[0]) + parseInt(colore1[1]) + parseInt(colore1[2]);
-	sfondo1 = parseInt(sfondo1[0]) + parseInt(sfondo1[1]) + parseInt(sfondo1[2]);		
-	if ( (colore1 == sfondo1) ) {	
-		var temp = 255 - ((255 - colore1) / 3);
-		var colore1 = 'rgb(' + temp + ', ' + temp + ', ' + temp + ')';
-		return colore1;
-	} 		
-	if (colore1 > sfondo1) {
-		if ((colore1 - sfondo1) <= 255) {	
+function compare_colors (colore, sfondo) {
+	if (colore != undefined) {	
+		colore1 = colore.substring(4,colore.length - 1).split(', ');
+		sfondo1 = sfondo.substring(4,sfondo.length - 1).split(', ');	
+		colore1 = parseInt(colore1[0]) + parseInt(colore1[1]) + parseInt(colore1[2]);
+		sfondo1 = parseInt(sfondo1[0]) + parseInt(sfondo1[1]) + parseInt(sfondo1[2]);		
+		if ( (colore1 == sfondo1) ) {	
 			var temp = 255 - ((255 - colore1) / 3);
 			var colore1 = 'rgb(' + temp + ', ' + temp + ', ' + temp + ')';
 			return colore1;
-		} 
-	}			
-	if (colore1 < sfondo1) {		
-		if ((sfondo1 - colore1) <= 255) {	
-			var temp = 255 - ((255 - colore1) / 3);
-			var colore1 = 'rgb(' + temp + ', ' + temp + ', ' + temp + ')';
-			return colore1;
-		} 
-	}		
-	return colore;
+		} 		
+		if (colore1 > sfondo1) {
+			if ((colore1 - sfondo1) <= 255) {	
+				var temp = 255 - ((255 - colore1) / 3);
+				var colore1 = 'rgb(' + temp + ', ' + temp + ', ' + temp + ')';
+				return colore1;
+			} 
+		}			
+		if (colore1 < sfondo1) {		
+			if ((sfondo1 - colore1) <= 255) {	
+				var temp = 255 - ((255 - colore1) / 3);
+				var colore1 = 'rgb(' + temp + ', ' + temp + ', ' + temp + ')';
+				return colore1;
+			} 
+		}		
+		return colore;
+	}
 }
 //make color brighter or darker
-function change_color(colore, valore, brighter) {	
-	var itwashex = false;
-	if (colore.charAt(0) == '#') {		
-		array = hex2num(colore)
-		colore = 'rgb('+array[0]+', '+array[1]+', '+array[2]+')';
-		var itwashex = true;
+function change_color(colore, valore, brighter) {
+	if (colore != undefined) {
+		var itwashex = false;
+		if (colore.charAt(0) == '#') {	
+			array = hex2num(colore)
+			colore = 'rgb('+array[0]+', '+array[1]+', '+array[2]+')';
+			var itwashex = true;
+		}
+		if (brighter == true) {
+			colore = colore.substring(4,colore.length - 1).split(', ');
+			colore[0] = parseInt(colore[0]) + valore; if ( isNaN(colore[0]) || (colore[0] > 255)) colore[0] = "255";
+			colore[1] = parseInt(colore[1]) + valore; if ( isNaN(colore[1]) || (colore[1] > 255)) colore[1] = "255";
+			colore[2] = parseInt(colore[2]) + valore; if ( isNaN(colore[2]) || (colore[2] > 255)) colore[2] = "255";
+		} else {
+			colore = colore.substring(4,colore.length - 1).split(', ');
+			colore[0] = parseInt(colore[0]) - valore; if ( isNaN(colore[0]) || (colore[0] > 255)) colore[0] = "255";
+			colore[1] = parseInt(colore[1]) - valore; if ( isNaN(colore[1]) || (colore[1] > 255)) colore[1] = "255";
+			colore[2] = parseInt(colore[2]) - valore; if ( isNaN(colore[2]) || (colore[2] > 255)) colore[2] = "255";
+		}
+		if (itwashex == true) colore = num2hex(colore);
+		else colore = 'rgb(' + colore.join(', ') + ')';	
+		return colore;
 	}
-	if (brighter == true) {
-		colore = colore.substring(4,colore.length - 1).split(', ');
-		colore[0] = parseInt(colore[0]) + valore; if ( isNaN(colore[0]) || (colore[0] > 255)) colore[0] = "255";
-		colore[1] = parseInt(colore[1]) + valore; if ( isNaN(colore[1]) || (colore[1] > 255)) colore[1] = "255";
-		colore[2] = parseInt(colore[2]) + valore; if ( isNaN(colore[2]) || (colore[2] > 255)) colore[2] = "255";
-	} else {
-		colore = colore.substring(4,colore.length - 1).split(', ');
-		colore[0] = parseInt(colore[0]) - valore; if ( isNaN(colore[0]) || (colore[0] > 255)) colore[0] = "255";
-		colore[1] = parseInt(colore[1]) - valore; if ( isNaN(colore[1]) || (colore[1] > 255)) colore[1] = "255";
-		colore[2] = parseInt(colore[2]) - valore; if ( isNaN(colore[2]) || (colore[2] > 255)) colore[2] = "255";
-	}
-	if (itwashex == true) colore = num2hex(colore);
-	else colore = 'rgb(' + colore.join(', ') + ')';	
-	return colore;
 }
 //RGB/hex conversions
 function hex2num(hex) {
@@ -422,6 +428,7 @@ function lm_resize() {
 		jQuery('#wphead').css('border-top-width', (lm_h+4)+'px'); 
 	}
 }
+
 jQuery(document).ready(function() {
 	// Remove unnecessary links in the top right corner 
 	<?php if ($lmoptions['reduce_userinfo']) { ?>
@@ -459,7 +466,7 @@ jQuery(document).ready(function() {
 	//submenu
 	var lm_border =  jQuery("#wphead").css('background-color');
 	if ( (lm_border == "transparent") ) var lm_border = jQuery("body").css('background-color');
-	var lm_border = change_color(lm_border, 20, true)
+	var lm_border = change_color(lm_border, 20, true);
 	var lm_color = compare_colors (lm_color, lm_bgcolor);			
 	//wphead
 	var borderline = jQuery("#wphead #viewsite a").css('background-color');
@@ -498,10 +505,10 @@ jQuery(document).ready(function() {
 		function() { jQuery(this).css('color', lm_li_currenthover).css('background-color', lm_current_bgcolor);}, 
 		function() { jQuery(this).css('color', lm_a_current).css('background-color', lm_current_bgcolor);}
 	);		
-	//#lm .sidemenu
+	//#lm .lmsidemenu
 	<?php if ( $lmoptions['separate_menus'] ) { ?>
-	jQuery('#lm .sidemenu').css("color", lm_a_sd);	
-	jQuery('#lm .sidemenu').hover(
+	jQuery('#lm .lmsidemenu').css("color", lm_a_sd);	
+	jQuery('#lm .lmsidemenu').hover(
 		function() { jQuery(this).css('color', lm_a_hoversd);},
 		function() { jQuery(this).css('color', lm_a_sd);}
 	);		
@@ -542,7 +549,7 @@ jQuery(document).ready(function() {
 	// Remove original menus (this is, actually, not needed, since the CSS should have taken care of this)
 	jQuery('#sidemenu').hide();
 	jQuery('#adminmenu').hide();
-	<?php if ( $lmoptions['hide_submenu'] ) { ?>
+	<?php if ( ( $lmoptions['hide_submenu'] ) && ($pagenow != "media-upload.php") ) { ?>
 	jQuery('#wpwrap #submenu').html('');
 	<?php } ?>	
 	// jQueryfication of the Son of Suckerfish Drop Down Menu
@@ -594,20 +601,21 @@ jQuery(document).ready(function() {
 	});	
 })
 
-//--><!]]></script><?php
+//--><!]]></script><?php }
 }
 
 function lm_css() {
 	global $pagenow, $is_winIE;
 	$lmoptions = get_option('lighter_options');	
-	if ( ($lmoptions['hide_submenu'] != '1') || ($pagenow == "media-upload.php") ) $submenu = ', #wpwrap ul #submenu li';
+	if ($pagenow == "media-upload.php") $submenu = '';
+	if (($lmoptions['hide_submenu'] ) && ($pagenow != "media-upload.php")) $submenu = ', #wpwrap #submenu a';
 	else $submenu = '';	
 	if ( !$lmoptions['display_icons'] ) $icons = '#lm img {display:none}';
 	else $icons = ''; ?>
     
 <style type="text/css">	
 #sidemenu, #adminmenu, #dashmenu<?php print $submenu; ?> {display:none;}
-#media-upload-header #sidemenu li {display:auto	;}
+
 <?php print $icons; ?> 
 #lm {
 	left:0px;
@@ -700,7 +708,6 @@ function lm_css() {
 #lm li a .count-0 {
 	display: none;
 }
-
 #lm li a:hover #awaiting-mod {
 	background-position: 0px bottom; /*was -80px but I have problems*/
 }
@@ -728,6 +735,7 @@ function lm_css() {
 	top:0px;
 }
 #media-upload-header #sidemenu { display: block; }
+#media-upload-header #sidemenu li {display:auto;}
 
 <?php if ($is_winIE) { ?>
 #lm {top:5px;}
@@ -743,7 +751,7 @@ function lm_css() {
 	padding: 10px;
 	margin-bottom:5px;
 	margin-top:5px;
-} 
+}
 #lighter_options fieldset img {
 	border:1px solid #ccc;
 	margin-right:10px; 

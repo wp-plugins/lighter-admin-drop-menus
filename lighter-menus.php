@@ -3,13 +3,11 @@
 Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-menus
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.6.6
+Version: 2.6.7
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.5
 */
-
-
 
 /*			IMPORTANT ACKNOWLEDGMENT:
 			------------------------------------------------------------------------------------------------------------------------									
@@ -21,9 +19,7 @@ WordPress Version: 2.5
 				in fact from you. Thank you man. --corpodibacco
 			------------------------------------------------------------------------------------------------------------------------		*/
 
-
-
-//few definitions
+//give few definitions
 $dir = basename(dirname(__FILE__));
 if ($dir == 'plugins') $dir = '';
 else $dir = $dir . '/';	
@@ -33,8 +29,9 @@ define("LIGHTER_PATH", get_option("siteurl") . "/".PLUGINDIR."/" . $dir);
 $currentLocale = get_locale();
 if(!empty($currentLocale)) {
 	$moFile = ABSPATH . PLUGINDIR ."/" . $dir . 'lighter-menus-' . $currentLocale . ".mo";
+
 	//check if it is a window server and changes path accordingly
-	if ( strpos($moFile, '\\')) $moFile = str_replace('/','\\',$moFile); 
+	if ( strpos($moFile, '\\')) $moFile = str_replace('/','\\',$moFile); //str_replace(chr(47),chr(92).chr(92),$moFile);
 	if(@file_exists($moFile) && is_readable($moFile)) load_textdomain('lighter-menus', $moFile);
 }
 
@@ -91,8 +88,7 @@ function lm_build () {
 	$menu[10][1] = "edit_posts";
 	$menu[10][2] = "edit.php";	
 	
-	//get_admin_page_parent();
-	
+	//get_admin_page_parent();	
 	$altmenu = array();
 	
 	/* Step 1 : populate first level menu as per user rights */
@@ -115,7 +111,7 @@ function lm_build () {
 			$altmenu[$item[2]]['class'] = " class='topcurrent'";
 			}else {
 				//it took me a while to figure out this NOT cool way to feedback when editing existing posts or pages. --corpodibacco
-				if ($item[0] == "Dashboard"){$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";/*$item[0] = "Dashboard |";*/}				
+				if ($item[0] == __("Dashboard")){$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";/*$item[0] = "Dashboard |";*/}				
 				elseif ( strpos($_SERVER['REQUEST_URI'], 'post.php?action') !== false && $item[2] == 'edit.php') 
 				$altmenu['edit.php']['class'] = " class='topcurrent'";
 				elseif ( strpos($_SERVER['REQUEST_URI'], 'page.php?action') !== false && $item[2] == 'edit.php') 
@@ -149,7 +145,7 @@ function lm_build () {
 					list($_plugin_page,$temp) = explode('?',$altmenu[$k]['url']);
 					$link = $_plugin_page.'?page='.$item[2];
 				} else {
-					$icon = lad_add_icons($item[0]);
+					$icon = lm_icons($item[0]);
 					$mtype = "<img src='" . LIGHTER_PATH . $icon . "' height='16' width='16' alt=''/>&nbsp;";
 					$link =  $item[2];
 				}
@@ -193,9 +189,9 @@ function lm_build () {
 				if (( strcmp ($self, $item[2])  == 0  && empty($parent_file) ) || ($parent_file && ($item[2] == $parent_file))) {
 					$altmenu[$item[2]]['class'] = " class='topcurrent'";
 				}else {
-					if ($item[0] == "Settings")$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
-					if ($item[0] == "Plugins")$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
-					if ($item[0] == "Users")$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";						
+					if ($item[0] == __("Settings"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
+					if ($item[0] == __("Plugins"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
+					if ($item[0] == __("Users"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";						
 				}
 				
 				$altmenu[$item[2]]['name'] = $item[0];
@@ -218,7 +214,7 @@ function lm_build () {
 						list($_plugin_page,$temp) = explode('?',$altmenu[$k]['url']);
 						$link = $_plugin_page.'?page='.$item[2];
 					} else {
-						$icon = lad_add_icons($item[0]);
+						$icon = lm_icons($item[0]);
 						$mtype = "<img src='" . LIGHTER_PATH . $icon . "' height='16' width='16' alt=''/>&nbsp;";
 						$link =  $item[2];
 					}
@@ -247,10 +243,10 @@ function lm_build () {
 	return ($altmenu);
 }
 
+//javascript
 function lm_js($menu = '') {
 	global $is_winIE, $pagenow;
-	$lmoptions = get_option('lighter_options');	
-	if ($pagenow != "media-upload.php") { ?>
+	$lmoptions = get_option('lighter_options');	?>
 	
 <script type="text/javascript"><!--//--><![CDATA[//><!--
 //preloading icons.I doubt this has any need to be.
@@ -428,15 +424,25 @@ function lm_resize() {
 }
 jQuery(document).ready(function() {
 	// Remove unnecessary links in the top right corner 
-	<?php if ($lmoptions['reduce_userinfo']) { ?>
+	<?php if($lmoptions['reduce_userinfo']) { ?>
 	var lmenu_userlinks = jQuery('#user_info p').html();
 	if (lmenu_userlinks) {
-		lmenu_userlinks = lmenu_userlinks.replace(/ \| <a href="http:\/\/codex.wordpress.org.*$/i, '');
+	lmenu_userlinks = lmenu_userlinks.replace(/action=logout(.*?)<\/a> \| .*$/i, 'action=logout$1<\/a><\/p>' ); //this works with any local different link
+	/*lmenu_userlinks = lmenu_userlinks.replace(/ \| <a href="http:\/\/codex.wordpress.org.*$/i, '');*/
 		jQuery('#user_info p').html(lmenu_userlinks);
 		jQuery('#user_info').css('z-index','81');
 		}
 	<?php } ?>	
-
+	//Remove Howdy
+	<?php if($lmoptions['remove_howdy']) { ?>
+	var lmenu_userlinks = jQuery('#user_info p').html();
+	if (lmenu_userlinks) {
+	lmenu_userlinks = lmenu_userlinks.replace(/^(.*?) (.*?)(\!)(.*)$/i, '$2$4' ); //this should work with any local howdy
+		jQuery('#user_info p').html(lmenu_userlinks);
+		jQuery('#user_info').css('z-index','81');
+		}
+	<?php } ?>
+	
 	// get colors	
 	//lm
 	var lm_bgcolor = jQuery("#wphead").css('border-top-color');	
@@ -489,8 +495,7 @@ jQuery(document).ready(function() {
 	jQuery('#lm li ul.ulcurrent').hover( 
 		function() { jQuery('#lm li .topcurrent').css('color', lm_a_hover).css('background-color', lm_bgcolor);}, 
 		function() { jQuery('#lm li .topcurrent').css('color', lm_a_current).css('background-color', lm_current_bgcolor);}
-	);		
-	
+	);			
 	//#lm li ul li a
 	jQuery('#lm li ul li a').hover( 
 		function() { jQuery(this).css('color', lm_a_current).css('background-color', lm_current_bgcolor);}, 
@@ -542,7 +547,7 @@ jQuery(document).ready(function() {
 	jQuery('#wphead').css('border-top-width', '30px');
 	jQuery('#wphead').css('border-top-style', 'solid');	
 	jQuery('#wphead').css('border-top-width', '30px');*/
-	
+		
 	// Remove original menus (this is, actually, not needed, since the CSS should have taken care of this)
 	jQuery('#sidemenu').hide();
 	jQuery('#adminmenu').hide();
@@ -598,17 +603,17 @@ jQuery(document).ready(function() {
 	});	
 })
 
-//--><!]]></script><?php }
+//--><!]]></script><?php
 }
 
+//css
 function lm_css() {
 	global $pagenow, $is_winIE;
 	$lmoptions = get_option('lighter_options');	
-	if ($pagenow != "media-upload.php")  {
-		if ( $lmoptions['hide_submenu'] ) $submenu = ', #wpwrap #submenu a';
-		else $submenu = '';	
-		if ( !$lmoptions['display_icons'] ) $icons = '#lm img {display:none}';
-		else $icons = ''; ?>
+	if ( $lmoptions['hide_submenu'] ) $submenu = ', #wpwrap #submenu a';
+	else $submenu = '';	
+	if ( !$lmoptions['display_icons'] ) $icons = '#lm img {display:none}';
+	else $icons = ''; ?>
     
 <style type="text/css">	
 #sidemenu, #adminmenu, #dashmenu<?php print $submenu; ?> {display:none;}
@@ -721,7 +726,6 @@ function lm_css() {
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
-
 <?php if (!$lmoptions['display_icons']) { ?>
 #lm li ul li a.subcurrent:before {content: "\00BB \0020";}
 <?php } ?>
@@ -731,8 +735,6 @@ function lm_css() {
 	position:relative;
 	top:0px;
 }
-#media-upload-header #sidemenu { display: block;}
-#media-upload-header #sidemenu li {display:auto;}
 
 <?php if ($is_winIE) { ?>
 #lm {top:5px;}
@@ -741,43 +743,24 @@ function lm_css() {
 #lm li a #awaiting-mod {margin-top: -0.1em;margin-left: -0.3em;}
 <?php } ?>
 
-/*the options page*/
-#lighter_options fieldset {
-	border:none;
-	border-top: 1px solid #ccc;
-	padding: 10px;
-	margin-bottom:5px;
-	margin-top:5px;
-}
-#lighter_options fieldset img {
-	border:1px solid #ccc;
-	margin-right:10px; 
-	margin-bottom:10px; 
-	vertical-align:middle;
-	/*float:left;*/
+</style><?php
 }
 
-#lighter_options fieldset div {
-	padding-top:2px;
-}
-
-</style><?php }
-}
-
+//add things to the wordpress admin header
 function lm_head() {
+	global $pagenow;
+	if ($pagenow != "media-upload.php") { 
 	?><!--Lighter Menus--><?php
 		lm_css();
 		lm_js();
-	?><!--end Lighter Menus--><?php
+	?><!--end Lighter Menus--><?php }
 }
 
 /***** Mu specific ****/
-
 function lm_remove_blogswitch_init() {
 	remove_action( '_admin_menu', 'blogswitch_init' );
 	add_action( '_admin_menu', 'lm_blogswitch_init' );
 }
-
 function lm_blogswitch_init() {
 	global $current_user, $current_blog;
 	$blogs = get_blogs_of_user( $current_user->ID );
@@ -787,11 +770,9 @@ function lm_blogswitch_init() {
 	add_action( 'dashmenu', 'blogswitch_markup' );
 }
 
-
 function lm_blogswitch_ob_start() {
 	ob_start( 'lm_blogswitch_ob_content' );
 }
-
 function lm_blogswitch_ob_content( $content ) {
 	// Menu with blog list
 	$mumenu = preg_replace( '#.*%%REAL_DASH_MENU%%(.*?)%%END_REAL_DASH_MENU%%.*#s', '\\1', $content );
@@ -804,7 +785,7 @@ function lm_blogswitch_ob_content( $content ) {
 }
 
 // add the icons to the sub menu items
-function lad_add_icons($menuitem){
+function lm_icons($menuitem){
 	$options = get_option('lighter_options');
 	$displayicons = $options['display_icons'];
 
@@ -923,7 +904,8 @@ function lad_add_icons($menuitem){
 	}
 }
 
-function lad_option_page(){
+//creates the option page
+function lm_page(){
 	// Check Whether User Can Manage Options
 	if(!current_user_can('manage_options'))die('Access Denied');
 	$mode = trim($_GET['mode']);
@@ -936,6 +918,7 @@ function lad_option_page(){
 				'display_icons' => $_POST['disp_ico'],
 				'separate_menus' => $_POST['sep_menu'],
 				'reduce_userinfo' => $_POST['reduce_userinfo'],
+				'remove_howdy' => $_POST['remove_howdy'],
 				'hide_submenu' => $_POST['hide_submenu'],
 				'max_plugins' => $_POST['max_plugins'],
 				'uninstall' => '', 
@@ -955,6 +938,7 @@ function lad_option_page(){
 				'display_icons' => $lmoptions['display_icons'],
 				'separate_menus' => $lmoptions['separate_menus'],
 				'reduce_userinfo' => $lmoptions['reduce_userinfo'],
+				'remove_howdy' => $lmoptions['remove_howdy'],
 				'hide_submenu' => $lmoptions['hide_submenu'],
 				'max_plugins' => $lmoptions['max_plugins'],
 				'uninstall' => $_POST['remove'],
@@ -993,61 +977,78 @@ function lad_option_page(){
 	if ( $lmoptions['display_icons'] ) $displayicons_selected = 'checked';
 	if ( $lmoptions['separate_menus'] ) $separatemenus_selected = 'checked';
 	if ( $lmoptions['reduce_userinfo'] ) $reduceuserinfo_selected = 'checked';
+	if ( $lmoptions['remove_howdy'] ) $removehowdy_selected = 'checked';
 	if ( $lmoptions['hide_submenu'] ) $showsubmenu_selected = 'checked';
 	if ( $lmoptions['uninstall'] ) $remove_lm_selected = 'checked';
-	if ( $lmoptions['folder'] ) $folder_lm_selected = 'checked';	
+	if ( $lmoptions['folder'] ) $folder_lm_selected = 'checked';		
 	?>		
 
 	<?php /*options*/ ?>
-	<div id="lighter_options"><div class="wrap"><br/><h2>Lighter Menus - <?php echo _e('Customization Options','lighter-menus') ?></h2><br/>
+	<div class="wrap"><br/><h2>Lighter Menus - <?php echo _e('Customization Options','lighter-menus') ?></h2><br/>
 	<?php echo _e('These options can be used to customize the appearance of the menus.','lighter-menus') ?><br/><br/>
     
-	<form method="post" action="<?php $_SERVER['REQUEST_URI'] ?>">	
-	<fieldset>
-    <img src="<?php echo LIGHTER_PATH; ?>/images/icons.png" />
+	<form method="post" action="<?php $_SERVER['REQUEST_URI'] ?>">
+	<table class="form-table">
+    
+    <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/icons.png" /></th><td>    
     <div><input type="checkbox" name="disp_ico" value="1" <?php echo $displayicons_selected ?> />
-    &nbsp;<?php echo _e('Display icons in the menus.','lighter-menus') ?></div>
-	<br /><br />
-    <img src="<?php echo LIGHTER_PATH; ?>/images/submenus.png" />
+    &nbsp;<?php echo _e('Display icons in the menus.','lighter-menus') ?></div>     
+    </td></tr>
+    
+    <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/submenus.png" /></th><td>
     <div><input type="checkbox" name="hide_submenu" value="1" <?php echo $showsubmenu_selected ?> />
-	&nbsp;<?php echo _e('Hide the regular submenu below the blog title.','lighter-menus') ?></div>	
-	<br /><br />
-    <img src="<?php echo LIGHTER_PATH; ?>/images/menus.png" />
+	&nbsp;<?php echo _e('Hide the regular admin submenu.','lighter-menus') ?></div>    
+    </td></tr>
+    
+    <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/menus.png" /></th><td> 
     <div><input type="checkbox" name="sep_menu" value="1" <?php echo $separatemenus_selected ?> />
-	&nbsp;<?php echo _e('Show the "Settings" "Plugin" and "Users" menus in a different color<br />and keep them to the right side as new plugin menus are added.','lighter-menus') ?></div>
-	<br /><br />
-    <img src="<?php echo LIGHTER_PATH; ?>/images/userinfo.png" />
+	&nbsp;<?php echo _e('Show the "Settings" "Plugin" and "Users" menus in a different color and keep them to the right side if new plugin menus are added.','lighter-menus') ?></div>    
+    </td></tr>
+    
+    <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/userinfo.png" /></th><td>
     <div><input type="checkbox" name="reduce_userinfo" value="1" <?php echo $reduceuserinfo_selected ?> />
-    &nbsp;<?php echo _e('Remove the \'Help\' and \'Forum\' links from the user menu.','lighter-menus') ?></div>
-	<br /><br />
+    &nbsp;<?php echo _e('Remove the \'Help\' and \'Forum\' links from the user menu.','lighter-menus') ?></div>    
+    </td></tr>
+    
+    <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/removehowdy.png" /></th><td>
+    <div><input type="checkbox" name="remove_howdy" value="1" <?php echo $removehowdy_selected ?> />
+    &nbsp;<?php echo _e('Remove the \'Howdy\' before the user menu.','lighter-menus') ?></div>    
+    </td></tr>
+    
+    <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/menulines.png" /></th><td>
     <?php $inputlines = '<input style="border:thin solid #ccc" type="text" name="max_plugins" value="'.$lmoptions['max_plugins'].'" size="2" />';
-    echo str_replace ("%x",$inputlines, __('A menu with more than %x lines will not drop down in a column but float to the right.','lighter-menus')); ?>	
-	</fieldset>	
-	
+    echo str_replace ("%x",$inputlines, __('A menu with more than %x lines will not drop down in a column but float to the right.','lighter-menus')); ?>    
+    </td></tr>
+    
+	</table>
     <input type="hidden" name="do" value="Update" />
 	<div class="submit"><input type="submit" value="<?php echo _e('Update Options &raquo;', 'lighter-menus') ?>" /></div>
-    </form></div><br/>
+    </form></div><br/> 
     
     <?php /*uninstall*/ ?>
     <div class="wrap"><br/><h2>Lighter Menus - <?php echo _e('Deactivation','lighter-menus') ?></h2><br/>
     <?php echo _e('Use this to deactivate Lighter Menus and optionally remove it completely.','lighter-menus') ?><br/><br/>   
-       
+    
 	<form method="post" action="<?php $_SERVER['REQUEST_URI'] ?>">
-    <fieldset>
+    <table class="form-table">
+    <tr valign="top">
+    <th scope="row"><?php _e('When deactivating', 'lighter-menus'); ?></th>
+    <td>
     <input type="checkbox" name="remove" value="1" <?php echo $remove_lm_selected ?> />
-    <?php echo _e('Remove the above options from the database.','lighter-menus') ?><br /><br />
+    <?php echo _e('Remove the above options from the database.','lighter-menus') ?><br />
     <input type="checkbox" name="folder" value="1" <?php echo $folder_lm_selected ?> />
     <?php echo _e('Remove the plugin folder.','lighter-menus') ?>
-    </fieldset>
-        
+    </td>
+    </tr>
+	</table>
     <input type="hidden" name="do" value="Deactivate" />
 	<div class="submit"><input type="submit" value="<?php echo _e('Deactivate Lighter Menus &raquo;','lighter-menus') ?>" /></div>
-    </form></div>
+    </form></div>    
 
     <?php /*link footer*/ ?>    
     <div style="text-align:center;" class="wrap" >
     <ul><li style="display:inline;list-style:none;">
-    <a href="http://www.italyisfalling.com/http://www.italyisfalling.com/lighter-admin-drop-menus-wordpress-plugin/">
+    <a href="http://www.italyisfalling.com/lighter-menus/">
 	<?php echo _e('Plugin\'s Homepage','lighter-menus') ?></a> | </li>
     <!--<li style="line-height:1em;display:inline;list-style:none;letter-spacing:0.5%;">Donate | </li>-->
     <li style="display:inline;list-style:none;"><a href="http://www.italyisfalling.com/coding"><?php echo _e('Other plugins','lighter-menus') ?></a></li>
@@ -1055,12 +1056,13 @@ function lad_option_page(){
 	<?php } //end switch mode
 }
 
-function lad_add_pages() {
-	add_theme_page( __('Lighter Menus Options','lighter-menus'),'Lighter Menus', 9, basename(__FILE__), 'lad_option_page');
+//add pages to wordpress theme pages
+function lm_pages() {
+	add_theme_page( __('Lighter Menus Options','lighter-menus'),'Lighter Menus', 9, basename(__FILE__), 'lm_page');
 }
 
 //upon activation
-function lighter_activation() {
+function lm_activation() {
 	//must see if old options exist even if empty
 	global $wpdb;
 	$sql1 = "SELECT option_name FROM $wpdb->options WHERE option_name = 'lad_display_icons'";
@@ -1086,6 +1088,7 @@ function lighter_activation() {
         $lmoptions['display_icons'] = $temp_1;
         $lmoptions['separate_menus'] = $temp_2;
 		$lmoptions['reduce_userinfo'] = '';
+		$lmoptions['remove_howdy'] = '';
 		$lmoptions['hide_submenu'] = '1';
 		$lmoptions['max_plugins'] = '30';	
 		$lmoptions['uninstall'] = '';
@@ -1095,7 +1098,7 @@ function lighter_activation() {
 }
 
 //upon deactivation
-function lighter_deactivation() {
+function lm_deactivation() {
 	global $wp_filesystem;
     $lmoptions = get_option('lighter_options');    
 
@@ -1137,11 +1140,10 @@ if ($wpmu_version)
 if (is_admin()) {
 	add_action('init', create_function('', 'wp_enqueue_script("jquery");')); 
 }
-register_activation_hook(__FILE__, 'lighter_activation');
-register_deactivation_hook(__FILE__, 'lighter_deactivation');
+register_activation_hook(__FILE__, 'lm_activation');
+register_deactivation_hook(__FILE__, 'lm_deactivation');
 add_action('dashmenu', 'lm');
 add_action('admin_head', 'lm_head');
-add_action('admin_menu', 'lad_add_pages');
-
+add_action('admin_menu', 'lm_pages');
 
 ?>

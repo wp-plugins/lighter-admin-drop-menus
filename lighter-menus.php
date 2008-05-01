@@ -3,7 +3,7 @@
 Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-menus
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.6.7
+Version: 2.6.8
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.5
@@ -28,7 +28,7 @@ define("LIGHTER_PATH", get_option("siteurl") . "/".PLUGINDIR."/" . $dir);
 //prepare for local
 $currentLocale = get_locale();
 if(!empty($currentLocale)) {
-	$moFile = ABSPATH . PLUGINDIR ."/" . $dir . 'lighter-menus-' . $currentLocale . ".mo";
+	$moFile = ABSPATH . PLUGINDIR ."/" . $dir . 'lang/lighter-menus-' . $currentLocale . ".mo";
 
 	//check if it is a window server and changes path accordingly
 	if ( strpos($moFile, '\\')) $moFile = str_replace('/','\\',$moFile); //str_replace(chr(47),chr(92).chr(92),$moFile);
@@ -249,7 +249,7 @@ function lm_js($menu = '') {
 	$lmoptions = get_option('lighter_options');	?>
 	
 <script type="text/javascript"><!--//--><![CDATA[//><!--
-//preloading icons.I doubt this has any need to be.
+//preloading icons. I doubt this has any need to be. Anyone?
 <?php if ($lmoptions['display_icons']) { ?>
 Image1=new Image(16,16)
 Image1.src="<?php echo LIGHTER_PATH.'images/'; ?>information.png"			
@@ -417,9 +417,10 @@ function lm_resize() {
 	var num_li=jQuery('#lm li.lm_toplevel').length;
 	var first_li = jQuery('#lm li.lm_toplevel').eq(0).offset();
 	var last_li = jQuery('#lm li.lm_toplevel').eq(num_li-1).offset(); // Dunno why, but jQuery('#lm li.lm_toplevel :last') doesn't work...
-	if (!lm_h) {lm_h = last_li.top + 25 }
+	if (!lm_h) {lm_h = last_li.top + 25;}
 	if ( first_li.top < last_li.top ) {
 		jQuery('#wphead').css('border-top-width', (lm_h+4)+'px'); 
+		/*jQuery('#lm li ul').css('top', lm_h+'px');*/	
 	}
 }
 jQuery(document).ready(function() {
@@ -437,7 +438,7 @@ jQuery(document).ready(function() {
 	<?php if($lmoptions['remove_howdy']) { ?>
 	var lmenu_userlinks = jQuery('#user_info p').html();
 	if (lmenu_userlinks) {
-	lmenu_userlinks = lmenu_userlinks.replace(/^(.*?) (.*?)(\!)(.*)$/i, '$2$4' ); //this should work with any local howdy
+	lmenu_userlinks = lmenu_userlinks.replace(/^(.*?)(<a.*?)(\!)(.*)$/i, '$2$4' ); //this should work with any local howdy
 		jQuery('#user_info p').html(lmenu_userlinks);
 		jQuery('#user_info').css('z-index','81');
 		}
@@ -448,6 +449,7 @@ jQuery(document).ready(function() {
 	var lm_bgcolor = jQuery("#wphead").css('border-top-color');	
 	if ( lm_bgcolor=='transparent') var lm_bgcolor = jQuery("body").css('background-color');		
 	var lm_color = jQuery('#user_info a').css('color');
+	var lm_color = change_color(lm_color,15,true); //testing this
 	var lm_a_hover = change_color(lm_color,45,true);
 	var lm_color = compare_colors (lm_color, lm_bgcolor);	
 	//sidemenu
@@ -790,8 +792,9 @@ function lm_icons($menuitem){
 	$displayicons = $options['display_icons'];
 
 	if ($displayicons == "1") {
-		switch(substr($menuitem, 0, 21))
-		{
+		/*switch(substr($menuitem, 0, 21))*/
+		switch($menuitem) {
+		
 			case __('Dashboard'):
 				$i = "information.png";
 				break;
@@ -900,6 +903,7 @@ function lm_icons($menuitem){
 		{
 			$i = "group_key.png";
 		}
+		/*if ($i == "") $i =*/ 
 		return 'images/'.$i;
 	}
 }

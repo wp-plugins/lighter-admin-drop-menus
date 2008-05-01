@@ -958,8 +958,8 @@ function lm_page(){
 	switch($mode) {
 		//  Deactivating
 		case 'end-UNINSTALL':
-				$deactivate_url = get_option("siteurl"). '/wp-admin/plugins.php?action=deactivate&plugin=lighter_menus/lighter-menus.php';
-				if(function_exists('wp_nonce_url'))	$deactivate_url = wp_nonce_url($deactivate_url, 'deactivate-plugin_lighter_menus/lighter-menus.php');	       
+				$deactivate_url = get_option("siteurl"). '/wp-admin/plugins.php?action=deactivate&plugin='.basename(dirname(__FILE__)). '/lighter-menus.php';
+				if(function_exists('wp_nonce_url'))	$deactivate_url = wp_nonce_url($deactivate_url, 'deactivate-'.basename(dirname(__FILE__)). '/lighter-menus.php');	       
 	 
 				//feedback the deletion option
 				$lmoptions = get_option('lighter_options');

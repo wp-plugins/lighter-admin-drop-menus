@@ -3,7 +3,7 @@
 Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-menus
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.6.8
+Version: 2.6.9
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.5
@@ -195,7 +195,7 @@ function lm_build () {
 				}
 				
 				$altmenu[$item[2]]['name'] = $item[0];
-				print 'blah'.$altmenu[$item[2]]['class'];
+				$altmenu[$item[2]]['class'];
 				/* Windows installs may have backslashes instead of slashes in some paths, fix this */
 				$altmenu[$item[2]]['name'] = str_replace(chr(92),chr(92).chr(92),$altmenu[$item[2]]['name']);
 			}

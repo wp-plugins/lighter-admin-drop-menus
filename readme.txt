@@ -3,7 +3,7 @@ Contributors: corpodibacco
 Tags: menu, admin, css, drop down, light
 Requires at least: 2.5
 Tested up to: 2.5.1
-Stable tag: 2.6.8
+Stable tag: 2.6.9
 
 Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.5.1+.
 
@@ -25,7 +25,7 @@ Lighter Menus creates Drop Down Menus instead of the regular Admin menus for Wor
 
 == Installation ==
 
-1. Upload the entire content of lighter\_admin\_menus.zip to your `/wp-content/plugins/` directory.
+1. Upload the entire content of plugin archive to your `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress (deactivate and reactivate if you're upgrading).
 3. Review the option page in "Design" > "Lighter menus"
 4. Done. Enjoy.
@@ -39,10 +39,11 @@ This version of Lighter Menus features localizations in:
 * German, thanks to Kristian Bollnow
 * Italian, thanks to yours truly.
 
-More are needed! If you want to translate this plugin in your language you are very welcome! In fact there are very few lines to translate. Just be aware that despite what PoEdit wants you to do, you should take a moment to check the code and then translate only the items that are actually under the textdomain 'lighter-menus'. You will notice in the code that 35 or so translatable items have no textdomain indicated (they look like this: `__('Dashboard')`, instead of this: `__('Dashboard', 'lighter-menus')` ). They're in the functions "lm\_icons" and "lm\_build" and they are just menu items names used for reference when binding them with the respective icons or style classes. In such cases just leave the translation empty, it would be useless work to translate them since they are not for the user to read. Your Wordpress locale takes care of the transaltion of those menu items.
+More are needed! If you want to translate this plugin in your language you are very welcome! In fact there are very few lines to translate. Just be aware that despite what PoEdit wants you to do, you should take a moment to check the code and then translate only the items that are actually under the textdomain 'lighter-menus'. You will notice in the code that 35 or so translatable items have no textdomain indicated (they look like this: `__('Dashboard')`, instead of this: `__('Dashboard', 'lighter-menus')` ). They're in the functions "lm\_icons" and "lm_build" and they are just menu items names used for reference when binding them with the respective icons or style classes. In such cases just leave the translation empty, it would be useless work to translate them since they are not for the user to read. Your Wordpress locale takes care of the transaltion of those menu items.
 
 == Changelog ==
 
+* 2.6.9 A leftover "blah" of some testing I had done in the past was still in the output. It's a miracle it didn't show up in a worse way. A big thank you to Shobba for poiting this out and apologies for yet another bugfix update... I also fixed something with the deactivator... Anyway, I am amazed, there's always something to fix.
 * 2.6.8 This version includes a Japanese translation, thanks to [ne-design](http://www.ragard-jp.com), and a German translation, thanks to Kristian Bollnow. Much obliged to both of them! I also managed to have the "no howdy" option working with Wordpress in japanese (still no luck with the chinese version, I need a guru of regex to understand this), and fixed a problem with menu icons when running with Wordpress in japanese (thanks to ne-design for pointing it out). Also, I made the regular menu link color a little brighter, and cleaned the code here and there. I think this will be the last update for a while so let's hope everything is fine with it.
 * 2.6.7 This version includes Chinese translation! A million thanks go to [dupola](http://dupola.com) for the effort. Also: I fixed a pretty ugly bug that broke the optional different colors of the sidemenu with local versions of Wordpress; I changed the aspect of the option page to make it more similar to the regular Wordpress 2.5 option pages; I fixed the removal of 'Help' and 'Forums' links, where local versions of Wordpress that personalized those links would broke the function; I added the option to remove the 'Howdy', too, although this does not work with the chinese version of Wordpress. While I was there I also redid the italian translation of the plugin, it was horrible. Now it is just a little less horrible. I can't believe how much the IT lexicon sounds ugly in italian. Finally, once again thanks to [dupola](http://dupola.com) who made me notice a couple of oversights, including that the link to the plugin home page was mysteriously all scrambled. All should be fixed now.
 * 2.6.6 Corrected a bug that prevented the new 2.5.1 media uploader to work with Lighter Menus. Now everything should get along finely. Also fixed the comment awaiting moderation message to incorrectly show up with 0 comments to moderate. Recommended.

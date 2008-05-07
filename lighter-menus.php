@@ -3,10 +3,31 @@
 Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-menus
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.6.9
+Version: 2.7
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
-WordPress Version: 2.5
+WordPress Version: 2.5.1
+*/
+
+/*
+Copyright (c) 2008
+Released under the GPL license
+http://www.gnu.org/licenses/gpl.txt
+
+    This file is part of WordPress.
+    WordPress is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
 /*			IMPORTANT ACKNOWLEDGMENT:
@@ -29,7 +50,6 @@ define("LIGHTER_PATH", get_option("siteurl") . "/".PLUGINDIR."/" . $dir);
 $currentLocale = get_locale();
 if(!empty($currentLocale)) {
 	$moFile = ABSPATH . PLUGINDIR ."/" . $dir . 'lang/lighter-menus-' . $currentLocale . ".mo";
-
 	//check if it is a window server and changes path accordingly
 	if ( strpos($moFile, '\\')) $moFile = str_replace('/','\\',$moFile); //str_replace(chr(47),chr(92).chr(92),$moFile);
 	if(@file_exists($moFile) && is_readable($moFile)) load_textdomain('lighter-menus', $moFile);
@@ -74,9 +94,7 @@ function lm_build () {
 	global $menu, $submenu, $plugin_page, $pagenow, $parent_file;
 	
 	/* Most of the following garbage are bits from admin-header.php,
-	 * modified to populate an array of all links to display in the menu
-	 */
-	 
+	 * modified to populate an array of all links to display in the menu*/	 
 	$self = preg_replace('|^.*/wp-admin/|i', '', $_SERVER['PHP_SELF']);
 	$self = preg_replace('|^.*/plugins/|i', '', $self);
 	
@@ -250,76 +268,76 @@ function lm_js($menu = '') {
 	
 <script type="text/javascript"><!--//--><![CDATA[//><!--
 //preloading icons. I doubt this has any need to be. Anyone?
-<?php if ($lmoptions['display_icons']) { ?>
-Image1=new Image(16,16)
-Image1.src="<?php echo LIGHTER_PATH.'images/'; ?>information.png"			
-Image2=new Image(16,16)
-Image2.src="<?php echo LIGHTER_PATH.'images/'; ?>email_edit.png"			
-Image3=new Image(16,16)
-Image3.src="<?php echo LIGHTER_PATH.'images/'; ?>page_edit.png"			
-Image4=new Image(16,16)
-Image4.src="<?php echo LIGHTER_PATH.'images/'; ?>link_add.png"			
-Image5=new Image(16,16)
-Image5.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_table.png"			
-Image6=new Image(16,16)
-Image6.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_page.png"			
-Image7=new Image(16,16)
-Image7.src="<?php echo LIGHTER_PATH.'images/'; ?>application_link.png"			
-Image8=new Image(16,16)
-Image8.src="<?php echo LIGHTER_PATH.'images/'; ?>tag_blue_edit.png"			
-Image9=new Image(16,16)
-Image9.src="<?php echo LIGHTER_PATH.'images/'; ?>newspaper_link.png"			
-Image10=new Image(16,16)
-Image10.src="<?php echo LIGHTER_PATH.'images/'; ?>application_view_gallery.png"			
-Image11=new Image(16,16)
-Image11.src="<?php echo LIGHTER_PATH.'images/'; ?>layout.png"			
-Image12=new Image(16,16)
-Image12.src="<?php echo LIGHTER_PATH.'images/'; ?>brick.png"			
-Image13=new Image(16,16)
-Image13.src="<?php echo LIGHTER_PATH.'images/'; ?>layout_edit.png"			
-Image14=new Image(16,16)
-Image14.src="<?php echo LIGHTER_PATH.'images/'; ?>layout_header.png"			
-Image15=new Image(16,16)
-Image15.src="<?php echo LIGHTER_PATH.'images/'; ?>attach.png"			
-Image16=new Image(16,16)
-Image16.src="<?php echo LIGHTER_PATH.'images/'; ?>basket_edit.png"			
-Image17=new Image(16,16)
-Image17.src="<?php echo LIGHTER_PATH.'images/'; ?>comments.png"			
-Image18=new Image(16,16)
-Image18.src="<?php echo LIGHTER_PATH.'images/'; ?>comment_add.png"			
-Image19=new Image(16,16)
-Image19.src="<?php echo LIGHTER_PATH.'images/'; ?>brick_edit.png"			
-Image20=new Image(16,16)
-Image20.src="<?php echo LIGHTER_PATH.'images/'; ?>report_add.png"			
-Image21=new Image(16,16)
-Image21.src="<?php echo LIGHTER_PATH.'images/'; ?>report_go.png"			
-Image22=new Image(16,16)
-Image22.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_link.png"			
-Image23=new Image(16,16)
-Image23.src="<?php echo LIGHTER_PATH.'images/'; ?>plugin_add.png"			
-Image24=new Image(16,16)
-Image24.src="<?php echo LIGHTER_PATH.'images/'; ?>plugin_edit.png"			
-Image25=new Image(16,16)
-Image25.src="<?php echo LIGHTER_PATH.'images/'; ?>user.png"			
-Image26=new Image(16,16)
-Image26.src="<?php echo LIGHTER_PATH.'images/'; ?>group_key.png"			
-Image27=new Image(16,16)
-Image27.src="<?php echo LIGHTER_PATH.'images/'; ?>application_view_list.png"			
-Image28=new Image(16,16)
-Image28.src="<?php echo LIGHTER_PATH.'images/'; ?>pencil.png"			
-Image29=new Image(16,16)
-Image29.src="<?php echo LIGHTER_PATH.'images/'; ?>zoom.png"			
-Image30=new Image(16,16)
-Image30.src="<?php echo LIGHTER_PATH.'images/'; ?>group_link.png"			
-Image31=new Image(16,16)
-Image31.src="<?php echo LIGHTER_PATH.'images/'; ?>lock.png"			
-Image32=new Image(16,16)
-Image32.src="<?php echo LIGHTER_PATH.'images/'; ?>book_link.png"			
-Image33=new Image(16,16)
-Image33.src="<?php echo LIGHTER_PATH.'images/'; ?>bullet_wrench.png"	
-Image34=new Image(16,16)
-Image34.src="<?php echo LIGHTER_PATH.'images/'; ?>group_key.png"	
-<?php } ?>
+	<?php if ($lmoptions['display_icons']) { ?>
+	Image1=new Image(16,16)
+	Image1.src="<?php echo LIGHTER_PATH.'images/'; ?>information.png"			
+	Image2=new Image(16,16)
+	Image2.src="<?php echo LIGHTER_PATH.'images/'; ?>email_edit.png"			
+	Image3=new Image(16,16)
+	Image3.src="<?php echo LIGHTER_PATH.'images/'; ?>page_edit.png"			
+	Image4=new Image(16,16)
+	Image4.src="<?php echo LIGHTER_PATH.'images/'; ?>link_add.png"			
+	Image5=new Image(16,16)
+	Image5.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_table.png"			
+	Image6=new Image(16,16)
+	Image6.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_page.png"			
+	Image7=new Image(16,16)
+	Image7.src="<?php echo LIGHTER_PATH.'images/'; ?>application_link.png"			
+	Image8=new Image(16,16)
+	Image8.src="<?php echo LIGHTER_PATH.'images/'; ?>tag_blue_edit.png"			
+	Image9=new Image(16,16)
+	Image9.src="<?php echo LIGHTER_PATH.'images/'; ?>newspaper_link.png"			
+	Image10=new Image(16,16)
+	Image10.src="<?php echo LIGHTER_PATH.'images/'; ?>application_view_gallery.png"			
+	Image11=new Image(16,16)
+	Image11.src="<?php echo LIGHTER_PATH.'images/'; ?>layout.png"			
+	Image12=new Image(16,16)
+	Image12.src="<?php echo LIGHTER_PATH.'images/'; ?>brick.png"			
+	Image13=new Image(16,16)
+	Image13.src="<?php echo LIGHTER_PATH.'images/'; ?>layout_edit.png"			
+	Image14=new Image(16,16)
+	Image14.src="<?php echo LIGHTER_PATH.'images/'; ?>layout_header.png"			
+	Image15=new Image(16,16)
+	Image15.src="<?php echo LIGHTER_PATH.'images/'; ?>attach.png"			
+	Image16=new Image(16,16)
+	Image16.src="<?php echo LIGHTER_PATH.'images/'; ?>basket_edit.png"			
+	Image17=new Image(16,16)
+	Image17.src="<?php echo LIGHTER_PATH.'images/'; ?>comments.png"			
+	Image18=new Image(16,16)
+	Image18.src="<?php echo LIGHTER_PATH.'images/'; ?>comment_add.png"			
+	Image19=new Image(16,16)
+	Image19.src="<?php echo LIGHTER_PATH.'images/'; ?>brick_edit.png"			
+	Image20=new Image(16,16)
+	Image20.src="<?php echo LIGHTER_PATH.'images/'; ?>report_add.png"			
+	Image21=new Image(16,16)
+	Image21.src="<?php echo LIGHTER_PATH.'images/'; ?>report_go.png"			
+	Image22=new Image(16,16)
+	Image22.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_link.png"			
+	Image23=new Image(16,16)
+	Image23.src="<?php echo LIGHTER_PATH.'images/'; ?>plugin_add.png"			
+	Image24=new Image(16,16)
+	Image24.src="<?php echo LIGHTER_PATH.'images/'; ?>plugin_edit.png"			
+	Image25=new Image(16,16)
+	Image25.src="<?php echo LIGHTER_PATH.'images/'; ?>user.png"			
+	Image26=new Image(16,16)
+	Image26.src="<?php echo LIGHTER_PATH.'images/'; ?>group_key.png"			
+	Image27=new Image(16,16)
+	Image27.src="<?php echo LIGHTER_PATH.'images/'; ?>application_view_list.png"			
+	Image28=new Image(16,16)
+	Image28.src="<?php echo LIGHTER_PATH.'images/'; ?>pencil.png"			
+	Image29=new Image(16,16)
+	Image29.src="<?php echo LIGHTER_PATH.'images/'; ?>zoom.png"			
+	Image30=new Image(16,16)
+	Image30.src="<?php echo LIGHTER_PATH.'images/'; ?>group_link.png"			
+	Image31=new Image(16,16)
+	Image31.src="<?php echo LIGHTER_PATH.'images/'; ?>lock.png"			
+	Image32=new Image(16,16)
+	Image32.src="<?php echo LIGHTER_PATH.'images/'; ?>book_link.png"			
+	Image33=new Image(16,16)
+	Image33.src="<?php echo LIGHTER_PATH.'images/'; ?>bullet_wrench.png"	
+	Image34=new Image(16,16)
+	Image34.src="<?php echo LIGHTER_PATH.'images/'; ?>group_key.png"	
+	<?php } ?>
 //in case two colors are too similar, alter the first one
 function compare_colors (colore, sfondo) {
 	if (colore != undefined) {	
@@ -429,7 +447,6 @@ jQuery(document).ready(function() {
 	var lmenu_userlinks = jQuery('#user_info p').html();
 	if (lmenu_userlinks) {
 	lmenu_userlinks = lmenu_userlinks.replace(/action=logout(.*?)<\/a> \| .*$/i, 'action=logout$1<\/a><\/p>' ); //this works with any local different link
-	/*lmenu_userlinks = lmenu_userlinks.replace(/ \| <a href="http:\/\/codex.wordpress.org.*$/i, '');*/
 		jQuery('#user_info p').html(lmenu_userlinks);
 		jQuery('#user_info').css('z-index','81');
 		}
@@ -437,14 +454,17 @@ jQuery(document).ready(function() {
 	//Remove Howdy
 	<?php if($lmoptions['remove_howdy']) { ?>
 	var lmenu_userlinks = jQuery('#user_info p').html();
+	var howdy = new RegExp("\!");
 	if (lmenu_userlinks) {
-	lmenu_userlinks = lmenu_userlinks.replace(/^(.*?)(<a.*?)(\!)(.*)$/i, '$2$4' ); //this should work with any local howdy
+		if (howdy.test(lmenu_userlinks)) { lmenu_userlinks = lmenu_userlinks.replace(/^(.*?)(<a.*?)(\!)(.*)$/i, '$2$4' ); 
+		} else { lmenu_userlinks = lmenu_userlinks.replace(/^(.*?)(<a.*?a>)(.*?)( | .*)$/i, '$2$4' ); //this is for chinese, thanks to hit1205 
+		}	
 		jQuery('#user_info p').html(lmenu_userlinks);
 		jQuery('#user_info').css('z-index','81');
 		}
 	<?php } ?>
 	
-	// get colors	
+	// get css values	
 	//lm
 	var lm_bgcolor = jQuery("#wphead").css('border-top-color');	
 	if ( lm_bgcolor=='transparent') var lm_bgcolor = jQuery("body").css('background-color');		
@@ -476,7 +496,7 @@ jQuery(document).ready(function() {
 	//wphead
 	var borderline = jQuery("#wphead #viewsite a").css('background-color');
 	
-	//apply colors	
+	//apply css values	
 	//#lm li a	
 	jQuery('#lm li a.lm_over').css('background-color', lm_bgcolor).css('color', lm_color);
 	<?php if ($is_winIE){ ?>jQuery('#lm li a').css('background-color', lm_bgcolor);<?php } ?>
@@ -539,7 +559,7 @@ jQuery(document).ready(function() {
 		function() { jQuery(this).css('background-color', ladminmod_hoverbgcolor);}, 
 		function() { jQuery(this).css('background-color', ladminmod_bgcolor);}
 	);*/		
-	//#wphead bottom border. this is from wordpress.com and .org
+	//#wphead bottom border. this imitates wordpress.com and .org
 	jQuery('#wphead').css("border-bottom", "1px solid");			
 	jQuery('#wphead').css("border-bottom-color", borderline);	
 	// this is for compatiblity with baltic amber and other possible restyling
@@ -619,7 +639,6 @@ function lm_css() {
     
 <style type="text/css">	
 #sidemenu, #adminmenu, #dashmenu<?php print $submenu; ?> {display:none;}
-
 <?php print $icons; ?> 
 #lm {
 	left:0px;
@@ -687,10 +706,7 @@ function lm_css() {
 	list-style-type:auto;
 	<?php if($is_winIE){ ?>border-top:none;<?php } ?>
 }
-#lm li ul li {
-	float:none;
-	/*text-align:left;*/		
-}
+#lm li ul li {float:none;/*text-align:left;*/}
 #lm li ul li a {
 	line-height:195%;
 }
@@ -701,26 +717,22 @@ function lm_css() {
 }
 #lm li a #awaiting-mod {
 	position: absolute;
-	margin-left: -0.5em;
-	margin-top: 0.3em;
+	margin-left: -0.4em;
+	margin-top: 0.4em;
 	font-size: 0.7em;
 	background-repeat: no-repeat;
 	background-position: 0 bottom;
-	height: 1.3em;
-	width: 1em;
+	height: 1.2em;
+	width: 1.6em;
 }
-#lm li a .count-0 {
-	display: none;
-}
-#lm li a:hover #awaiting-mod {
-	background-position: 0px bottom; /*was -80px but I have problems*/
-}
+<?php if (!$lmoptions['show_zero']) { ?>#lm li a .count-0 {display: none;}<?php } ?>
+#lm li a:hover #awaiting-mod {background-position: 0px bottom; /*was -80px but I have problems*/}
 #lm li a #awaiting-mod span {
-	top: -0.5em;
-	right: 0;
+	top: -0.7em;
+	right: 3px;
 	position: absolute;
 	display: block;
-	height: 1.3em;
+	height: 1.4em;
 	line-height: 1.3em;
 	padding: 0 0.6em;
 	-moz-border-radius: 3px;
@@ -728,9 +740,7 @@ function lm_css() {
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
-<?php if (!$lmoptions['display_icons']) { ?>
-#lm li ul li a.subcurrent:before {content: "\00BB \0020";}
-<?php } ?>
+<?php if (!$lmoptions['display_icons']) { ?>#lm li ul li a.subcurrent:before {content: "\00BB \0020";}<?php } ?>
 /* Mu Specific */
 #lmmu_head {font-weight:bolder;}
 #lmmu_head #all-my-blogs {
@@ -742,7 +752,7 @@ function lm_css() {
 #lm {top:5px;}
 #lm li { text-align:left; margin-left:0px;}
 #lm li.lm_over ul {left:inherit;top:25px;}
-#lm li a #awaiting-mod {margin-top: -0.1em;margin-left: -0.3em;}
+#lm li a #awaiting-mod {margin-top: -0.1em}
 <?php } ?>
 
 </style><?php
@@ -925,6 +935,7 @@ function lm_page(){
 				'remove_howdy' => $_POST['remove_howdy'],
 				'hide_submenu' => $_POST['hide_submenu'],
 				'max_plugins' => $_POST['max_plugins'],
+				'show_zero' => $_POST['show_zero'],
 				'uninstall' => '', 
 				'folder' => ''
 				);
@@ -945,6 +956,7 @@ function lm_page(){
 				'remove_howdy' => $lmoptions['remove_howdy'],
 				'hide_submenu' => $lmoptions['hide_submenu'],
 				'max_plugins' => $lmoptions['max_plugins'],
+				'show_zero' => $lmoptions['show_zero'],
 				'uninstall' => $_POST['remove'],
 				'folder' => $_POST['folder']
 				);
@@ -983,6 +995,7 @@ function lm_page(){
 	if ( $lmoptions['reduce_userinfo'] ) $reduceuserinfo_selected = 'checked';
 	if ( $lmoptions['remove_howdy'] ) $removehowdy_selected = 'checked';
 	if ( $lmoptions['hide_submenu'] ) $showsubmenu_selected = 'checked';
+	if ( $lmoptions['show_zero'] ) $showzero_selected = 'checked';
 	if ( $lmoptions['uninstall'] ) $remove_lm_selected = 'checked';
 	if ( $lmoptions['folder'] ) $folder_lm_selected = 'checked';		
 	?>		
@@ -1017,6 +1030,11 @@ function lm_page(){
     <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/removehowdy.png" /></th><td>
     <div><input type="checkbox" name="remove_howdy" value="1" <?php echo $removehowdy_selected ?> />
     &nbsp;<?php echo _e('Remove the \'Howdy\' before the user menu.','lighter-menus') ?></div>    
+    </td></tr>
+
+    <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/showzero.png" /></th><td>
+    <div><input type="checkbox" name="show_zero" value="1" <?php echo $showzero_selected ?> />
+    &nbsp;<?php echo _e('Show the total comments awaiting moderation even with zero comments to moderate.','lighter-menus') ?></div>    
     </td></tr>
     
     <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/menulines.png" /></th><td>
@@ -1094,7 +1112,8 @@ function lm_activation() {
 		$lmoptions['reduce_userinfo'] = '';
 		$lmoptions['remove_howdy'] = '';
 		$lmoptions['hide_submenu'] = '1';
-		$lmoptions['max_plugins'] = '30';	
+		$lmoptions['max_plugins'] = '30';
+		$lmoptions['show_zero'] = '';
 		$lmoptions['uninstall'] = '';
 		$lmoptions['folder'] = '';
         add_option('lighter_options', $lmoptions);

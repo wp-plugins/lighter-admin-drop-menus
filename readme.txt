@@ -2,8 +2,8 @@
 Contributors: corpodibacco
 Tags: menu, admin, css, drop down, light
 Requires at least: 2.5
-Tested up to: 2.5.1
-Stable tag: 2.7
+Tested up to: 2.6
+Stable tag: 2.7.1
 
 Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.5.1+.
 
@@ -38,12 +38,14 @@ This version of Lighter Menus features localizations in:
 * Japanese, thanks to [ne-design](http://www.ragard-jp.com)
 * German, thanks to Kristian Bollnow
 * Chinese (Taiwan), thanks to [hit1205](http://hit1205.blogdns.org/blog)
+* Russian, thanks to rlector (also thanks to Dimox)
 * Italian, thanks to, well, yours truly.
 
 More are needed! If you want to translate this plugin in your language you are very welcome! In fact there are very few lines to translate. Just be aware that despite what [poEdit](http://www.poedit.net/) wants you to do, you should take a moment to check the code and then translate only the items that are actually under the textdomain 'lighter-menus'. You will notice in the code that 35 or so translatable items have no textdomain indicated (they look like this: `__('Dashboard')`, instead of this: `__('Dashboard', 'lighter-menus')` ). They're in the functions "lm\_icons" and "lm\_build" and they are just menu items names used for reference when binding them with the respective icons or style classes. In such cases just leave the translation empty, it would be useless work to translate said items since they are not for the user to read. Your Wordpress locale takes care of those translations.
 
 == Changelog ==
 
+* 2.7.1 This version fixes a couple of minor problems given by the new WP 2.6: the press-this page, that didn't work (thanks to [Robert](http://robv.de/) for pointing this bug out), and the notification bubble of the plugins menu, which wasn't considered. This version also includes a Russian translation, thanks to [rlector](http://www.wordpressplugins.ru/).
 * 2.7 This version includes Chinese-Taiwan translation. Thanks to [hit1205](http://hit1205.blogdns.org/blog) for the effort! hit1205 also heroically helped to fix the "no howdy" feature for Wordpress Chinese. Thanks man! This version also implements a new feature, asked for by Callum on the blog: the ability to optionally show the comment bubble even if there is nothing to moderate. You're welcome, man! :) I also cleaned a little the appearance of the above mentioned bubble, it should look less ugly now. 
 And with this I'm really done. An almost round number, 2.7 is _really_ going to be the last update for a while. Have a nice blogging, everyone!
 * 2.6.9 A leftover "blah" of some testing I had done in the past was still in the output. It's a miracle it didn't show up in a worse way. A big thank you to Shobba for poiting this out and apologies for yet another bugfix update... I also fixed something with the deactivator... Anyway, I am amazed, there's always something to fix!

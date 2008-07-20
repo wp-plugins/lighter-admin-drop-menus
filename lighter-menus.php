@@ -3,10 +3,10 @@
 Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-menus
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.7
+Version: 2.7.1
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
-WordPress Version: 2.5.1
+WordPress Version: 2.6
 */
 
 /*
@@ -208,7 +208,7 @@ function lm_build () {
 					$altmenu[$item[2]]['class'] = " class='topcurrent'";
 				}else {
 					if ($item[0] == __("Settings"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
-					if ($item[0] == __("Plugins"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
+					if (strstr($item[0], __("Plugins")))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
 					if ($item[0] == __("Users"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";						
 				}
 				
@@ -545,6 +545,15 @@ jQuery(document).ready(function() {
 		function() { jQuery(this).css('color', ladminmod_hovercolor);}, 
 		function() { jQuery(this).css('color', ladminmod_color);}
 	);	
+	//#update-plugins
+	jQuery("#lm li a #update-plugins").css('background-image', ladminmod_bgimage);
+	jQuery('#lm li a #update-plugins span').css('background-color', ladminmod_bgcolor);	
+	jQuery("#lm li a #update-plugins").css('color', ladminmod_color);
+	jQuery('#lm li a #update-plugins').hover(
+		function() { jQuery(this).css('color', ladminmod_hovercolor);}, 
+		function() { jQuery(this).css('color', ladminmod_color);}
+	);	
+	
 	//this is crazy, man
 	/*var bgimage = jQuery("#adminmenu li a #awaiting-mod").css('background-image');*/	
 	<?php /*$im = imagecreatefromgif(get_option('siteurl'). '/wp-admin/images/comment-stalk-classic.gif' );	
@@ -715,9 +724,9 @@ function lm_css() {
 	z-index:999999;
 	top:26px;
 }
-#lm li a #awaiting-mod {
+#lm li a #awaiting-mod, #lm li a #update-plugins {
 	position: absolute;
-	margin-left: -0.4em;
+	margin-left: -0.2em;
 	margin-top: 0.4em;
 	font-size: 0.7em;
 	background-repeat: no-repeat;
@@ -726,15 +735,15 @@ function lm_css() {
 	width: 1.6em;
 }
 <?php if (!$lmoptions['show_zero']) { ?>#lm li a .count-0 {display: none;}<?php } ?>
-#lm li a:hover #awaiting-mod {background-position: 0px bottom; /*was -80px but I have problems*/}
-#lm li a #awaiting-mod span {
+#lm li a:hover #awaiting-mod, #lm li a:hover #update-plugins {background-position: 0px bottom; /*was -80px but I have problems*/}
+#lm li a #awaiting-mod span, #lm li a #update-plugins span {
 	top: -0.7em;
 	right: 3px;
 	position: absolute;
 	display: block;
 	height: 1.4em;
 	line-height: 1.3em;
-	padding: 0 0.6em;
+	padding: 0 0.4em;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -761,7 +770,7 @@ function lm_css() {
 //add things to the wordpress admin header
 function lm_head() {
 	global $pagenow;
-	if ($pagenow != "media-upload.php") { 
+	if ($pagenow != "press-this.php" && $pagenow != "media-upload.php") { 
 	?><!--Lighter Menus--><?php
 		lm_css();
 		lm_js();
@@ -1168,5 +1177,4 @@ register_deactivation_hook(__FILE__, 'lm_deactivation');
 add_action('dashmenu', 'lm');
 add_action('admin_head', 'lm_head');
 add_action('admin_menu', 'lm_pages');
-
 ?>

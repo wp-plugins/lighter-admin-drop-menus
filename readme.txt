@@ -5,11 +5,11 @@ Requires at least: 2.5
 Tested up to: 2.6
 Stable tag: 2.7.1
 
-Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.5.1+.
+Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.6+.
 
 == Description ==
 
-Lighter Menus creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Fast to load, adaptable to color schemes, Lighter Menus comes with silk icons, a option page, and a design that fits within the Wordpress 2.5 interface taking the less room possible.
+Lighter Menus creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Fast to load, adaptable to color schemes, Lighter Menus comes with silk icons, a option page, and a design that fits within the Wordpress interface taking the less room possible.
 
 == Screenshots ==
 

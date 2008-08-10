@@ -3,7 +3,7 @@
 Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-menus
 Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.7.1
+Version: 2.7.2
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
 WordPress Version: 2.6
@@ -1033,7 +1033,7 @@ function lm_page(){
     
     <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/userinfo.png" /></th><td>
     <div><input type="checkbox" name="reduce_userinfo" value="1" <?php echo $reduceuserinfo_selected ?> />
-    &nbsp;<?php echo _e('Remove the \'Help\' and \'Forum\' links from the user menu.','lighter-menus') ?></div>    
+    &nbsp;<?php echo _e('Remove the \'Help\', \'Forum\' and \'Turbo\' links from the user menu.','lighter-menus') ?></div>    
     </td></tr>
     
     <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/removehowdy.png" /></th><td>

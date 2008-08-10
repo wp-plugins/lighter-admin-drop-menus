@@ -40,8 +40,8 @@ This version of Lighter Menus features localizations in:
 * Chinese (Taiwan), thanks to [hit1205](http://hit1205.blogdns.org/blog)
 * Russian, thanks to [rlector](http://www.wordpressplugins.ru/) (also thanks to Dimox who proposed his translation approximately at the same moment)
 * Polish, thanks to x600
-* Swedish, thanks to [Mikael Jorhult] (http://www.mishkin.se/)
-* Spanish, thanks to [Alejandro Urrutia Daglio] (http://theindependentproject.com/)
+* Swedish, thanks to [Mikael Jorhult](http://www.mishkin.se/)
+* Spanish, thanks to [Alejandro Urrutia Daglio](http://theindependentproject.com/)
 * Italian, thanks to, well, yours truly.
 
 More are needed! If you want to translate this plugin in your language you are very welcome! In fact there are very few lines to translate. Just be aware that despite what [poEdit](http://www.poedit.net/) wants you to do, you should translate only the items that in the code are actually under the textdomain 'lighter-menus'. You will notice in lighter-menus.php that 35 or so translatable items have no textdomain indicated (they look like this: `__('Dashboard')`, instead of this: `__('Dashboard', 'lighter-menus')` ). They're in the functions "lm\_icons" and "lm\_build" and they are just menu items names used for reference when binding them with the respective icons or style classes. In such cases just leave the translation empty, it would be useless work to translate said items since they are not for the user to read. Your Wordpress locale takes care of those translations.

@@ -3,7 +3,7 @@ Contributors: corpodibacco
 Tags: menu, admin, css, drop down, light
 Requires at least: 2.5
 Tested up to: 2.6
-Stable tag: 2.7.3
+Stable tag: 2.7.5
 
 Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.6+.
 

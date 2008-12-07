@@ -1,0 +1,288 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Lighter menus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-12-01 10:48+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Dragos Nicholas <freesoftwareworkshop@gmail.com>\n"
+"Language-Team: Dragos Nicolae <freesoftwareworkshop@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Romanian\n"
+"X-Poedit-Country: ROMANIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: C:\\xampp\\htdocs\\wordpress\\wp-content\\plugins\\lighter-admin-drop-menus\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\wordpress\\wp-content\\plugins\\lighter-admin-drop-menus\n"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:102
+msgid "Write"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:105
+msgid "Manage"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:132
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:817
+msgid "Dashboard"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:210
+msgid "Settings"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:211
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:887
+msgid "Plugins"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:212
+msgid "Users"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:821
+msgid "Post"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:824
+msgid "Page"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:827
+msgid "Link"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:831
+msgid "Posts"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:834
+msgid "Pages"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:837
+msgid "Links"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:840
+msgid "Tags"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:843
+msgid "Link Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:846
+msgid "Media Library"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:850
+msgid "Themes"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:853
+msgid "Widgets"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:856
+msgid "Theme Editor"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:859
+msgid "Header Image and Color"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:863
+msgid "Uploads"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:866
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:869
+msgid "Comments"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:872
+#, php-format
+msgid "Awaiting Moderation (%s)"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:875
+msgid "Files"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:878
+msgid "Import"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:881
+msgid "Export"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:884
+msgid "Import Links"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:890
+msgid "Plugin Editor"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:893
+msgid "Your Profile"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:896
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:921
+msgid "Authors &amp; Users"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:899
+msgid "General"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:902
+msgid "Writing"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:905
+msgid "Reading"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:908
+msgid "Discussion"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:911
+msgid "Privacy"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:914
+msgid "Permalinks"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:917
+msgid "Miscellaneous"
+msgstr ""
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:955
+#, php-format
+msgid "<strong>Options saved.</strong> You should probably <a href=\"%s\">open this page</a> again."
+msgstr "<strong>Opţiunil au fost salvate.</strong> Ar trebui să <a href=\"%s\">deschideţi această pagină</a> din nou."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:987
+msgid "Deactivate Lighter Menus"
+msgstr "Dezactivează Lighter Menus"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:989
+msgid "Click Here</a> to deactivate Lighter Menus."
+msgstr "Click Aici </a> pentru a dezactiva Lighter Menus."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:991
+msgid "Warning:"
+msgstr "Avertizare:"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:992
+msgid "The plugin options will be removed."
+msgstr "Opţiunile pluginului vor fi şterse."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:993
+msgid "The plugin folder will be removed."
+msgstr "Folderul pluginului va fi şters."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1013
+msgid "Customization Options"
+msgstr "Opţiuni de Personalizare"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1014
+msgid "These options can be used to customize the appearance of the menus."
+msgstr "Aceste opţiuni pot fi folosite pentru a personaliza apariţia meniurilor."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1021
+msgid "Display icons in the menus."
+msgstr "Afişează iconuri în meniuri."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1026
+msgid "Hide the regular admin submenu."
+msgstr "Ascunde submeniul obişnuit de administrator."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1031
+msgid "Show the \"Settings\" \"Plugin\" and \"Users\" menus in a different color and keep them to the right side if new plugin menus are added."
+msgstr "Arată meniurile \"Setări\" \"Plugin\" şi \"Utilizatori\" într-o culoare diferită şi păstrează-le în dreapta dacă un nou meniu de plugin este adăugat."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1036
+msgid "Remove the 'Help', 'Forum' and 'Turbo' links from the user menu."
+msgstr "Înlătură linkurile 'Help', 'Forum' şi 'Turbo' din meniul utilizatorului."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1041
+msgid "Remove the 'Howdy' before the user menu."
+msgstr "Înlătură 'Howdy' dinaintea meniului utilizatorului."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1046
+msgid "Show the total comments awaiting moderation even with zero comments to moderate."
+msgstr "Afişează numărul total de comentarii ce aşteaptă moderare chiar dacă acestea sunt zero."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1051
+#, php-format
+msgid "A menu with more than %x lines will not drop down in a column but float to the right."
+msgstr "Un meniu cu mai mult de %x linii nu va coborî într-o coloană ci va \"pluti\" la dreapta."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1056
+msgid "Update Options &raquo;"
+msgstr "Actualizează Opţiunile &raquo;"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1060
+msgid "Deactivation"
+msgstr "Dezactivare"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1061
+msgid "Use this to deactivate Lighter Menus and optionally remove it completely."
+msgstr "Folosiţi aceasta pentru a dezactiva Lighter Menus şi, opţional, pentru a şterge pluginul definitiv."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1066
+msgid "When deactivating"
+msgstr "Când dezactivaţi"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1069
+msgid "Remove the above options from the database."
+msgstr "Înlăturaţi opţiunile de mai sus din baza de date."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1071
+msgid "Remove the plugin folder."
+msgstr "Înlătură directorul pluginului."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1076
+msgid "Deactivate Lighter Menus &raquo;"
+msgstr "Dezactivaţi Lighter Menus &raquo;"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1083
+msgid "Plugin's Homepage"
+msgstr "Pagina pluginului"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1085
+msgid "Other plugins"
+msgstr "Alte pluginuri"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1092
+msgid "Lighter Menus Options"
+msgstr "Opţiuni Lighter Menus"
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1144
+msgid "Could not access filesystem."
+msgstr "Nu am putut accesa sistemul de fişiere (filesystem)."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1145
+msgid "Filesystem error"
+msgstr "Eroare a sistemului de fişiere."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1156
+msgid "Ooops. The plugin is not in its own folder, or there is something else going on."
+msgstr "Ups. Pluginul nu se află în directorul său propriu, sau este o altă problemă."
+
+#: C:\xampp\htdocs\wordpress\wp-content\plugins\lighter-admin-drop-menus/lighter-menus.php:1160
+msgid "Could not remove the plugin folder"
+msgstr "Nu am putut înlătura directorul pluginului."
+

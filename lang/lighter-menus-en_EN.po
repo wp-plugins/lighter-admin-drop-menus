@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lighterMenus-en\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-06 22:29+0100\n"
+"POT-Creation-Date: 2008-12-07 11:12+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: corpodibacco <corpodibacco@italyisfalling.com>\n"
+"Last-Translator: ico <ico@italyisfalling.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,273 +15,282 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../lighter-menus.php:81
+#: ../lighter-menus.php:104
+#: ../lighter-menus.php:797
+msgid "Drafts"
+msgstr "Drafts"
+
+#: ../lighter-menus.php:113
 msgid "Write"
 msgstr ""
 
-#: ../lighter-menus.php:84
+#: ../lighter-menus.php:116
 msgid "Manage"
 msgstr ""
 
-#: ../lighter-menus.php:111
-#: ../lighter-menus.php:787
+#: ../lighter-menus.php:142
+#: ../lighter-menus.php:780
 msgid "Dashboard"
 msgstr ""
 
-#: ../lighter-menus.php:189
+#: ../lighter-menus.php:182
 msgid "Settings"
 msgstr ""
 
-#: ../lighter-menus.php:190
-#: ../lighter-menus.php:857
+#: ../lighter-menus.php:183
+#: ../lighter-menus.php:853
 msgid "Plugins"
 msgstr ""
 
-#: ../lighter-menus.php:191
+#: ../lighter-menus.php:184
 msgid "Users"
 msgstr ""
 
-#: ../lighter-menus.php:791
+#: ../lighter-menus.php:784
 msgid "Post"
 msgstr ""
 
-#: ../lighter-menus.php:794
+#: ../lighter-menus.php:787
 msgid "Page"
 msgstr ""
 
-#: ../lighter-menus.php:797
+#: ../lighter-menus.php:790
 msgid "Link"
 msgstr ""
 
-#: ../lighter-menus.php:801
+#: ../lighter-menus.php:794
 msgid "Posts"
 msgstr ""
 
-#: ../lighter-menus.php:804
+#: ../lighter-menus.php:800
 msgid "Pages"
 msgstr ""
 
-#: ../lighter-menus.php:807
+#: ../lighter-menus.php:803
 msgid "Links"
 msgstr ""
 
-#: ../lighter-menus.php:810
+#: ../lighter-menus.php:806
 msgid "Tags"
 msgstr ""
 
-#: ../lighter-menus.php:813
+#: ../lighter-menus.php:809
 msgid "Link Categories"
 msgstr ""
 
-#: ../lighter-menus.php:816
+#: ../lighter-menus.php:812
 msgid "Media Library"
 msgstr ""
 
-#: ../lighter-menus.php:820
+#: ../lighter-menus.php:816
 msgid "Themes"
 msgstr ""
 
-#: ../lighter-menus.php:823
+#: ../lighter-menus.php:819
 msgid "Widgets"
 msgstr ""
 
-#: ../lighter-menus.php:826
+#: ../lighter-menus.php:822
 msgid "Theme Editor"
 msgstr ""
 
-#: ../lighter-menus.php:829
+#: ../lighter-menus.php:825
 msgid "Header Image and Color"
 msgstr ""
 
-#: ../lighter-menus.php:833
+#: ../lighter-menus.php:829
 msgid "Uploads"
 msgstr ""
 
-#: ../lighter-menus.php:836
+#: ../lighter-menus.php:832
 msgid "Categories"
 msgstr ""
 
-#: ../lighter-menus.php:839
+#: ../lighter-menus.php:835
 msgid "Comments"
 msgstr ""
 
-#: ../lighter-menus.php:842
+#: ../lighter-menus.php:838
 #, php-format
 msgid "Awaiting Moderation (%s)"
 msgstr ""
 
-#: ../lighter-menus.php:845
+#: ../lighter-menus.php:841
 msgid "Files"
 msgstr ""
 
-#: ../lighter-menus.php:848
+#: ../lighter-menus.php:844
 msgid "Import"
 msgstr ""
 
-#: ../lighter-menus.php:851
+#: ../lighter-menus.php:847
 msgid "Export"
 msgstr ""
 
-#: ../lighter-menus.php:854
+#: ../lighter-menus.php:850
 msgid "Import Links"
 msgstr ""
 
-#: ../lighter-menus.php:860
+#: ../lighter-menus.php:856
 msgid "Plugin Editor"
 msgstr ""
 
-#: ../lighter-menus.php:863
+#: ../lighter-menus.php:859
 msgid "Your Profile"
 msgstr ""
 
-#: ../lighter-menus.php:866
-#: ../lighter-menus.php:891
+#: ../lighter-menus.php:862
+#: ../lighter-menus.php:892
 msgid "Authors &amp; Users"
 msgstr ""
 
-#: ../lighter-menus.php:869
+#: ../lighter-menus.php:865
 msgid "General"
 msgstr ""
 
-#: ../lighter-menus.php:872
+#: ../lighter-menus.php:868
 msgid "Writing"
 msgstr ""
 
-#: ../lighter-menus.php:875
+#: ../lighter-menus.php:871
 msgid "Reading"
 msgstr ""
 
-#: ../lighter-menus.php:878
+#: ../lighter-menus.php:874
 msgid "Discussion"
 msgstr ""
 
-#: ../lighter-menus.php:881
+#: ../lighter-menus.php:877
 msgid "Privacy"
 msgstr ""
 
-#: ../lighter-menus.php:884
+#: ../lighter-menus.php:880
 msgid "Permalinks"
 msgstr ""
 
-#: ../lighter-menus.php:887
+#: ../lighter-menus.php:883
 msgid "Miscellaneous"
 msgstr ""
 
-#: ../lighter-menus.php:925
+#: ../lighter-menus.php:927
 #, php-format
 msgid "<strong>Options saved.</strong> You should probably <a href=\"%s\">open this page</a> again."
 msgstr "<strong>Options saved.</strong> You should probably <a href=\"%s\">open this page</a> again."
 
-#: ../lighter-menus.php:957
+#: ../lighter-menus.php:960
 msgid "Deactivate Lighter Menus"
 msgstr "Deactivate Lighter Menus"
 
-#: ../lighter-menus.php:959
+#: ../lighter-menus.php:962
 msgid "Click Here</a> to deactivate Lighter Menus."
 msgstr "Click Here</a> to deactivate Lighter Menus."
 
-#: ../lighter-menus.php:961
+#: ../lighter-menus.php:964
 msgid "Warning:"
 msgstr "Warning:"
 
-#: ../lighter-menus.php:962
+#: ../lighter-menus.php:965
 msgid "The plugin options will be removed."
 msgstr "The plugin options will be removed."
 
-#: ../lighter-menus.php:963
+#: ../lighter-menus.php:966
 msgid "The plugin folder will be removed."
 msgstr "The plugin folder will be removed."
 
-#: ../lighter-menus.php:983
+#: ../lighter-menus.php:987
 msgid "Customization Options"
 msgstr "Customization Options"
 
-#: ../lighter-menus.php:984
+#: ../lighter-menus.php:988
 msgid "These options can be used to customize the appearance of the menus."
 msgstr "These options can be used to customize the appearance of the menus."
 
-#: ../lighter-menus.php:991
+#: ../lighter-menus.php:995
 msgid "Display icons in the menus."
 msgstr "Display icons in the menus."
 
-#: ../lighter-menus.php:996
+#: ../lighter-menus.php:1000
 msgid "Hide the regular admin submenu."
 msgstr "Hide the regular admin submenu."
 
-#: ../lighter-menus.php:1001
+#: ../lighter-menus.php:1005
 msgid "Show the \"Settings\" \"Plugin\" and \"Users\" menus in a different color and keep them to the right side if new plugin menus are added."
 msgstr "Show the \"Settings\" \"Plugin\" and \"Users\" menus in a different color and keep them to the right side if new plugin menus are added."
 
-#: ../lighter-menus.php:1006
-msgid "Remove the 'Help' and 'Forum' links from the user menu."
-msgstr "Remove the 'Help' and 'Forum' links from the user menu."
+#: ../lighter-menus.php:1010
+msgid "Remove the 'Help', 'Forum' and 'Turbo' links from the user menu."
+msgstr "Remove the 'Help', 'Forum' and 'Turbo' links from the user menu."
 
-#: ../lighter-menus.php:1011
+#: ../lighter-menus.php:1015
 msgid "Remove the 'Howdy' before the user menu."
 msgstr "Remove the 'Howdy' before the user menu."
 
-#: ../lighter-menus.php:1016
-msgid "Show the total comments awaiting moderation even with zero comments to moderate."
-msgstr "Show the total comments awaiting moderation even with zero comments to moderate."
+#: ../lighter-menus.php:1020
+msgid "Show when there are 0 comments to moderate."
+msgstr "Show when there are 0 comments to moderate."
 
-#: ../lighter-menus.php:1021
+#: ../lighter-menus.php:1025
+msgid "Add 'Drafts' to the 'Manage menu'."
+msgstr "Add 'Drafts' to the 'Manage menu'."
+
+#: ../lighter-menus.php:1030
 #, php-format
 msgid "A menu with more than %x lines will not drop down in a column but float to the right."
 msgstr "A menu with more than %x lines will not drop down in a column but float to the right."
 
-#: ../lighter-menus.php:1026
+#: ../lighter-menus.php:1035
 msgid "Update Options &raquo;"
 msgstr "Update Options &raquo;"
 
-#: ../lighter-menus.php:1030
+#: ../lighter-menus.php:1039
 msgid "Deactivation"
 msgstr "Deactivation"
 
-#: ../lighter-menus.php:1031
+#: ../lighter-menus.php:1040
 msgid "Use this to deactivate Lighter Menus and optionally remove it completely."
 msgstr "Use this to deactivate Lighter Menus and optionally remove it completely."
 
-#: ../lighter-menus.php:1036
+#: ../lighter-menus.php:1045
 msgid "When deactivating"
 msgstr "When deactivating"
 
-#: ../lighter-menus.php:1039
+#: ../lighter-menus.php:1048
 msgid "Remove the above options from the database."
 msgstr "Remove the above options from the database."
 
-#: ../lighter-menus.php:1041
+#: ../lighter-menus.php:1050
 msgid "Remove the plugin folder."
 msgstr "Remove the plugin folder."
 
-#: ../lighter-menus.php:1046
+#: ../lighter-menus.php:1055
 msgid "Deactivate Lighter Menus &raquo;"
 msgstr "Deactivate Lighter Menus &raquo;"
 
-#: ../lighter-menus.php:1053
+#: ../lighter-menus.php:1062
 msgid "Plugin's Homepage"
 msgstr "Plugin's Homepage"
 
-#: ../lighter-menus.php:1055
+#: ../lighter-menus.php:1064
 msgid "Other plugins"
 msgstr "Other plugins"
 
-#: ../lighter-menus.php:1062
+#: ../lighter-menus.php:1071
 msgid "Lighter Menus Options"
 msgstr "Lighter Menus Options"
 
-#: ../lighter-menus.php:1114
+#: ../lighter-menus.php:1124
 msgid "Could not access filesystem."
 msgstr "Could not access filesystem."
 
-#: ../lighter-menus.php:1115
+#: ../lighter-menus.php:1125
 msgid "Filesystem error"
 msgstr "Filesystem error"
 
-#: ../lighter-menus.php:1126
+#: ../lighter-menus.php:1136
 msgid "Ooops. The plugin is not in its own folder, or there is something else going on."
 msgstr "Ooops. The plugin is not in its own folder, or there is something else going on."
 
-#: ../lighter-menus.php:1130
+#: ../lighter-menus.php:1140
 msgid "Could not remove the plugin folder"
 msgstr "Could not remove the plugin folder"
 

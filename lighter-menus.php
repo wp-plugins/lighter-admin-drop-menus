@@ -2,11 +2,11 @@
 /*
 Plugin Name: Lighter Menus
 Plugin URI: http://www.italyisfalling.com/lighter-menus
-Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5 interface taking the less room possible.
-Version: 2.7.2
+Description: Creates Drop Down Menus for WordPress Admin Panels. Fast to load, adaptable to color schemes, comes with silk icons, a option page,  and a design that fits within the Wordpress 2.5+ interface taking the less room possible.
+Version: 2.7.5
 Author: corpodibacco
 Author URI: http://www.italyisfalling.com/coding/
-WordPress Version: 2.6
+WordPress Version: 2.6.5
 */
 
 /*
@@ -91,14 +91,25 @@ function lm() {
 /* builds an array populated with all the infos needed for menu and submenu
 it optionally does it twice to separate the sidemenus from regular. */
 function lm_build () {
+
 	global $menu, $submenu, $plugin_page, $pagenow, $parent_file;
 	
-	/* Most of the following garbage are bits from admin-header.php,
-	 * modified to populate an array of all links to display in the menu*/	 
+	//get options
+	$lmoptions = get_option('lighter_options');
+	$separatemenus = $lmoptions['separate_menus'];
+	$draftsmenu =  $lmoptions['drafts_menu'];
+	
+	// adds drafts submenu entry
+	if ($draftsmenu == 1) {
+		$submenu['edit.php'][12] = array(__('Drafts'), 'edit_posts', 'edit.php?post_status=draft');
+		ksort($submenu['edit.php']);	
+	}
+	
+	//clean self	 
 	$self = preg_replace('|^.*/wp-admin/|i', '', $_SERVER['PHP_SELF']);
 	$self = preg_replace('|^.*/plugins/|i', '', $self);
 	
-	/* Make sure that "Manage" always stays the same. Stolen from Andy @ YellowSwordFish */
+	//do something
 	$menu[5][0] = __("Write");
 	$menu[5][1] = "edit_posts";
 	$menu[5][2] = "post-new.php";
@@ -107,16 +118,16 @@ function lm_build () {
 	$menu[10][2] = "edit.php";	
 	
 	//get_admin_page_parent();	
-	$altmenu = array();
-	
+	$altmenu = array();	
+
 	/* Step 1 : populate first level menu as per user rights */
 	foreach ($menu as $key => $item)  {
 	
-	//select only main menu if you want to distinguish it
-	if ($separatemenus = "1"){
-		if ( $key > 29 && $key < 41 )continue;
-	}
-	
+		//select only main menu if you want to distinguish it
+		if ($separatemenus == 1) {
+			if ( $key > 29 && $key < 41 ) continue;
+		}
+		
 		// 0 = name, 1 = capability, 2 = file
 		if ( current_user_can($item[1]) ) {
 			$sys_menu_file = $item[2];
@@ -124,12 +135,11 @@ function lm_build () {
 				$altmenu[$item[2]]['url'] = get_settings('siteurl') . "/wp-admin/admin.php?page={$item[2]}";			
 			else
 				$altmenu[$item[2]]['url'] = get_settings('siteurl') . "/wp-admin/{$item[2]}";
-
+			
 			if (( strcmp($self, $item[2]) == 0 && empty($parent_file)) || ($parent_file && ($item[2] == $parent_file))) {
-			$altmenu[$item[2]]['class'] = " class='topcurrent'";
-			}else {
-				//it took me a while to figure out this NOT cool way to feedback when editing existing posts or pages. --corpodibacco
-				if ($item[0] == __("Dashboard")){$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";/*$item[0] = "Dashboard |";*/}				
+				$altmenu[$item[2]]['class'] = " class='topcurrent'";			
+			} else {			
+				if ( $item[0] == __("Dashboard") && $separatemenus == 1)$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";	
 				elseif ( strpos($_SERVER['REQUEST_URI'], 'post.php?action') !== false && $item[2] == 'edit.php') 
 				$altmenu['edit.php']['class'] = " class='topcurrent'";
 				elseif ( strpos($_SERVER['REQUEST_URI'], 'page.php?action') !== false && $item[2] == 'edit.php') 
@@ -149,8 +159,43 @@ function lm_build () {
 		}
 	}
 	
-	/* Step 2 : populate second level menu */
+	/* Step 2 : populate first level menu as per user rights for settings,plugins an users */
+	if ($separatemenus == 1){ //doing this only if you actually want to separate the two menus
+	
+		foreach ($menu as $key => $item)  {	
+		
+		if ( $key <= 31 && $key >= 41 ) continue; // skip each menu item after 30 and before 40			
+		
+			// 0 = name, 1 = capability, 2 = file
+			if ( current_user_can($item[1]) ) {
+			
+				$sys_menu_file = $item[2];
+				if ( file_exists(ABSPATH . "wp-content/plugins/{$item[2]}") )
+					$altmenu[$item[2]]['url'] = get_settings('siteurl') . "/wp-admin/admin.php?page={$item[2]}";			
+				else				
+					$altmenu[$item[2]]['url'] = get_settings('siteurl') . "/wp-admin/{$item[2]}";				
+				
+				if (( strcmp ($self, $item[2])  == 0  && empty($parent_file) ) || ($parent_file && ($item[2] == $parent_file))) {
+					$altmenu[$item[2]]['class'] = " class='topcurrent'";
+				}else {
+				
+					if ($item[0] == __("Settings"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
+					if (strstr($item[0], __("Plugins")))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
+					if ($item[0] == __("Users"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";						
+				}
+				
+				$altmenu[$item[2]]['name'] = $item[0];
+				$altmenu[$item[2]]['class'];
+				/* Windows installs may have backslashes instead of slashes in some paths, fix this */
+				$altmenu[$item[2]]['name'] = str_replace(chr(92),chr(92).chr(92),$altmenu[$item[2]]['name']);
+			}
+		}		
+		
+	}
+	
+	/* Step 3 : populate second level menu */
 	foreach ($submenu as $k=>$v) {
+	
 		foreach ($v as $item) {
 			if (array_key_exists($k,$altmenu) and current_user_can($item[1])) {
 				
@@ -169,14 +214,22 @@ function lm_build () {
 				}
 				
 				/* Windows installs may put backslashes instead of slashes in paths, fix this */
-				$link = str_replace(chr(92),chr(92).chr(92),$link);
-				
+				$link = str_replace(chr(92),chr(92).chr(92),$link);				
 				$altmenu[$k]['sub'][$item[2]]['url'] = $link;
 				
+				
 				// Is it current page ?
-				$class = '';
-				if ( (isset($plugin_page) && $plugin_page == $item[2] && $pagenow == $k) || (!isset($plugin_page) && $self == $item[2] ) ) 
+				$class = '';				
+				if ( strpos($_SERVER['REQUEST_URI'], 'edit.php?post_status=draft') !== false) {					
+					 if ($item[2] == 'edit.php?post_status=draft')
+					 $class=" class='subcurrent'";
+				} 	
+								
+				else {					
+					if ( (isset($plugin_page) && $plugin_page == $item[2] && $pagenow == $k ) || (!isset($plugin_page) && $self == $item[2] ) ) 
 					$class=" class='subcurrent'";
+				}				
+					
 				if ($class) {
 					$altmenu[$k]['sub'][$item[2]]['class'] = $class;
 					/*$altmenu[$k]['class'] = $class;*/
@@ -189,74 +242,6 @@ function lm_build () {
 		}
 	}
 
-	/* Step 3 : populate first level menu as per user rights for settings,plugins an users */
-	if ($separatemenus = "1"){ //doing this only if you actually want to separate the two menus
-		foreach ($menu as $key => $item)  {
-		
-		if ( $key <= 31 && $key >= 41 ) continue; // skip each menu item after 30 and before 40			
-		
-			// 0 = name, 1 = capability, 2 = file
-			if ( current_user_can($item[1]) ) {
-				$sys_menu_file = $item[2];
-				if ( file_exists(ABSPATH . "wp-content/plugins/{$item[2]}") )
-					$altmenu[$item[2]]['url'] = get_settings('siteurl') . "/wp-admin/admin.php?page={$item[2]}";			
-				else				
-					$altmenu[$item[2]]['url'] = get_settings('siteurl') . "/wp-admin/{$item[2]}";
-				
-				
-				if (( strcmp ($self, $item[2])  == 0  && empty($parent_file) ) || ($parent_file && ($item[2] == $parent_file))) {
-					$altmenu[$item[2]]['class'] = " class='topcurrent'";
-				}else {
-					if ($item[0] == __("Settings"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
-					if (strstr($item[0], __("Plugins")))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";
-					if ($item[0] == __("Users"))$altmenu[$sys_menu_file]['class'] = " class='lmsidemenu'";						
-				}
-				
-				$altmenu[$item[2]]['name'] = $item[0];
-				$altmenu[$item[2]]['class'];
-				/* Windows installs may have backslashes instead of slashes in some paths, fix this */
-				$altmenu[$item[2]]['name'] = str_replace(chr(92),chr(92).chr(92),$altmenu[$item[2]]['name']);
-			}
-		}
-		
-		/* Step 4 : populate second level menu for settings, plugins and users */
-		foreach ($submenu as $k=>$v) {
-			foreach ($v as $item) {
-				if (array_key_exists($k,$altmenu) and current_user_can($item[1])) {
-					
-					// What's the link ?
-					$menu_hook = get_plugin_page_hook($item[2], $k);
-	
-					if (file_exists(ABSPATH . "wp-content/plugins/{$item[2]}") || ! empty($menu_hook)) {
-					$mtype = "<img src='" . LIGHTER_PATH . "images/plugin.png' height='16' width='16' alt=''/>&nbsp;";
-						list($_plugin_page,$temp) = explode('?',$altmenu[$k]['url']);
-						$link = $_plugin_page.'?page='.$item[2];
-					} else {
-						$icon = lm_icons($item[0]);
-						$mtype = "<img src='" . LIGHTER_PATH . $icon . "' height='16' width='16' alt=''/>&nbsp;";
-						$link =  $item[2];
-					}
-					
-					/* Windows installs may put backslashes instead of slashes in paths, fix this */
-					$link = str_replace(chr(92),chr(92).chr(92),$link);
-					
-					$altmenu[$k]['sub'][$item[2]]['url'] = $link;
-					
-					// Is it current page ?
-					$class = '';
-					if ( (isset($plugin_page) && $plugin_page == $item[2] && $pagenow == $k) || (!isset($plugin_page) && $self == $item[2] ) ) $class=" class='subcurrent'";
-					if ($class) {
-						$altmenu[$k]['sub'][$item[2]]['class'] = $class;
-						/*$altmenu[$k]['class'] = $class;*/
-					}
-					
-					// What's its name again ?
-					$altmenu[$k]['sub'][$item[2]]['name'] = $item[0];
-					$altmenu[$k]['sub'][$item[2]]['icon'] = $mtype;
-				}
-			}
-		}
-	}
 	
 	return ($altmenu);
 }
@@ -268,76 +253,76 @@ function lm_js($menu = '') {
 	
 <script type="text/javascript"><!--//--><![CDATA[//><!--
 //preloading icons. I doubt this has any need to be. Anyone?
-	<?php if ($lmoptions['display_icons']) { ?>
-	Image1=new Image(16,16)
-	Image1.src="<?php echo LIGHTER_PATH.'images/'; ?>information.png"			
-	Image2=new Image(16,16)
-	Image2.src="<?php echo LIGHTER_PATH.'images/'; ?>email_edit.png"			
-	Image3=new Image(16,16)
-	Image3.src="<?php echo LIGHTER_PATH.'images/'; ?>page_edit.png"			
-	Image4=new Image(16,16)
-	Image4.src="<?php echo LIGHTER_PATH.'images/'; ?>link_add.png"			
-	Image5=new Image(16,16)
-	Image5.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_table.png"			
-	Image6=new Image(16,16)
-	Image6.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_page.png"			
-	Image7=new Image(16,16)
-	Image7.src="<?php echo LIGHTER_PATH.'images/'; ?>application_link.png"			
-	Image8=new Image(16,16)
-	Image8.src="<?php echo LIGHTER_PATH.'images/'; ?>tag_blue_edit.png"			
-	Image9=new Image(16,16)
-	Image9.src="<?php echo LIGHTER_PATH.'images/'; ?>newspaper_link.png"			
-	Image10=new Image(16,16)
-	Image10.src="<?php echo LIGHTER_PATH.'images/'; ?>application_view_gallery.png"			
-	Image11=new Image(16,16)
-	Image11.src="<?php echo LIGHTER_PATH.'images/'; ?>layout.png"			
-	Image12=new Image(16,16)
-	Image12.src="<?php echo LIGHTER_PATH.'images/'; ?>brick.png"			
-	Image13=new Image(16,16)
-	Image13.src="<?php echo LIGHTER_PATH.'images/'; ?>layout_edit.png"			
-	Image14=new Image(16,16)
-	Image14.src="<?php echo LIGHTER_PATH.'images/'; ?>layout_header.png"			
-	Image15=new Image(16,16)
-	Image15.src="<?php echo LIGHTER_PATH.'images/'; ?>attach.png"			
-	Image16=new Image(16,16)
-	Image16.src="<?php echo LIGHTER_PATH.'images/'; ?>basket_edit.png"			
-	Image17=new Image(16,16)
-	Image17.src="<?php echo LIGHTER_PATH.'images/'; ?>comments.png"			
-	Image18=new Image(16,16)
-	Image18.src="<?php echo LIGHTER_PATH.'images/'; ?>comment_add.png"			
-	Image19=new Image(16,16)
-	Image19.src="<?php echo LIGHTER_PATH.'images/'; ?>brick_edit.png"			
-	Image20=new Image(16,16)
-	Image20.src="<?php echo LIGHTER_PATH.'images/'; ?>report_add.png"			
-	Image21=new Image(16,16)
-	Image21.src="<?php echo LIGHTER_PATH.'images/'; ?>report_go.png"			
-	Image22=new Image(16,16)
-	Image22.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_link.png"			
-	Image23=new Image(16,16)
-	Image23.src="<?php echo LIGHTER_PATH.'images/'; ?>plugin_add.png"			
-	Image24=new Image(16,16)
-	Image24.src="<?php echo LIGHTER_PATH.'images/'; ?>plugin_edit.png"			
-	Image25=new Image(16,16)
-	Image25.src="<?php echo LIGHTER_PATH.'images/'; ?>user.png"			
-	Image26=new Image(16,16)
-	Image26.src="<?php echo LIGHTER_PATH.'images/'; ?>group_key.png"			
-	Image27=new Image(16,16)
-	Image27.src="<?php echo LIGHTER_PATH.'images/'; ?>application_view_list.png"			
-	Image28=new Image(16,16)
-	Image28.src="<?php echo LIGHTER_PATH.'images/'; ?>pencil.png"			
-	Image29=new Image(16,16)
-	Image29.src="<?php echo LIGHTER_PATH.'images/'; ?>zoom.png"			
-	Image30=new Image(16,16)
-	Image30.src="<?php echo LIGHTER_PATH.'images/'; ?>group_link.png"			
-	Image31=new Image(16,16)
-	Image31.src="<?php echo LIGHTER_PATH.'images/'; ?>lock.png"			
-	Image32=new Image(16,16)
-	Image32.src="<?php echo LIGHTER_PATH.'images/'; ?>book_link.png"			
-	Image33=new Image(16,16)
-	Image33.src="<?php echo LIGHTER_PATH.'images/'; ?>bullet_wrench.png"	
-	Image34=new Image(16,16)
-	Image34.src="<?php echo LIGHTER_PATH.'images/'; ?>group_key.png"	
-	<?php } ?>
+<?php if ($lmoptions['display_icons']) { ?>
+Image1=new Image(16,16)
+Image1.src="<?php echo LIGHTER_PATH.'images/'; ?>information.png"			
+Image2=new Image(16,16)
+Image2.src="<?php echo LIGHTER_PATH.'images/'; ?>email_edit.png"			
+Image3=new Image(16,16)
+Image3.src="<?php echo LIGHTER_PATH.'images/'; ?>page_edit.png"			
+Image4=new Image(16,16)
+Image4.src="<?php echo LIGHTER_PATH.'images/'; ?>link_add.png"			
+Image5=new Image(16,16)
+Image5.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_table.png"			
+Image6=new Image(16,16)
+Image6.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_page.png"			
+Image7=new Image(16,16)
+Image7.src="<?php echo LIGHTER_PATH.'images/'; ?>application_link.png"			
+Image8=new Image(16,16)
+Image8.src="<?php echo LIGHTER_PATH.'images/'; ?>tag_blue_edit.png"			
+Image9=new Image(16,16)
+Image9.src="<?php echo LIGHTER_PATH.'images/'; ?>newspaper_link.png"			
+Image10=new Image(16,16)
+Image10.src="<?php echo LIGHTER_PATH.'images/'; ?>application_view_gallery.png"			
+Image11=new Image(16,16)
+Image11.src="<?php echo LIGHTER_PATH.'images/'; ?>layout.png"			
+Image12=new Image(16,16)
+Image12.src="<?php echo LIGHTER_PATH.'images/'; ?>brick.png"			
+Image13=new Image(16,16)
+Image13.src="<?php echo LIGHTER_PATH.'images/'; ?>layout_edit.png"			
+Image14=new Image(16,16)
+Image14.src="<?php echo LIGHTER_PATH.'images/'; ?>layout_header.png"			
+Image15=new Image(16,16)
+Image15.src="<?php echo LIGHTER_PATH.'images/'; ?>attach.png"			
+Image16=new Image(16,16)
+Image16.src="<?php echo LIGHTER_PATH.'images/'; ?>basket_edit.png"			
+Image17=new Image(16,16)
+Image17.src="<?php echo LIGHTER_PATH.'images/'; ?>comments.png"			
+Image18=new Image(16,16)
+Image18.src="<?php echo LIGHTER_PATH.'images/'; ?>comment_add.png"			
+Image19=new Image(16,16)
+Image19.src="<?php echo LIGHTER_PATH.'images/'; ?>brick_edit.png"			
+Image20=new Image(16,16)
+Image20.src="<?php echo LIGHTER_PATH.'images/'; ?>report_add.png"			
+Image21=new Image(16,16)
+Image21.src="<?php echo LIGHTER_PATH.'images/'; ?>report_go.png"			
+Image22=new Image(16,16)
+Image22.src="<?php echo LIGHTER_PATH.'images/'; ?>folder_link.png"			
+Image23=new Image(16,16)
+Image23.src="<?php echo LIGHTER_PATH.'images/'; ?>plugin_add.png"			
+Image24=new Image(16,16)
+Image24.src="<?php echo LIGHTER_PATH.'images/'; ?>plugin_edit.png"			
+Image25=new Image(16,16)
+Image25.src="<?php echo LIGHTER_PATH.'images/'; ?>user.png"			
+Image26=new Image(16,16)
+Image26.src="<?php echo LIGHTER_PATH.'images/'; ?>group_key.png"			
+Image27=new Image(16,16)
+Image27.src="<?php echo LIGHTER_PATH.'images/'; ?>application_view_list.png"			
+Image28=new Image(16,16)
+Image28.src="<?php echo LIGHTER_PATH.'images/'; ?>pencil.png"			
+Image29=new Image(16,16)
+Image29.src="<?php echo LIGHTER_PATH.'images/'; ?>zoom.png"			
+Image30=new Image(16,16)
+Image30.src="<?php echo LIGHTER_PATH.'images/'; ?>group_link.png"			
+Image31=new Image(16,16)
+Image31.src="<?php echo LIGHTER_PATH.'images/'; ?>lock.png"			
+Image32=new Image(16,16)
+Image32.src="<?php echo LIGHTER_PATH.'images/'; ?>book_link.png"			
+Image33=new Image(16,16)
+Image33.src="<?php echo LIGHTER_PATH.'images/'; ?>bullet_wrench.png"	
+Image34=new Image(16,16)
+Image34.src="<?php echo LIGHTER_PATH.'images/'; ?>group_key.png"	
+<?php } ?>
 //in case two colors are too similar, alter the first one
 function compare_colors (colore, sfondo) {
 	if (colore != undefined) {	
@@ -530,13 +515,12 @@ jQuery(document).ready(function() {
 		function() { jQuery(this).css('color', lm_a_current).css('background-color', lm_current_bgcolor);}
 	);		
 	//#lm .lmsidemenu
-	<?php if ( $lmoptions['separate_menus'] ) { ?>
 	jQuery('#lm .lmsidemenu').css("color", lm_a_sd);	
 	jQuery('#lm .lmsidemenu').hover(
 		function() { jQuery(this).css('color', lm_a_hoversd);},
 		function() { jQuery(this).css('color', lm_a_sd);}
 	);		
-	<?php } ?>		
+
 	//#awaiting-mod	
 	jQuery("#lm li a #awaiting-mod").css('background-image', ladminmod_bgimage);
 	jQuery('#lm li a #awaiting-mod span').css('background-color', ladminmod_bgcolor);	
@@ -554,30 +538,9 @@ jQuery(document).ready(function() {
 		function() { jQuery(this).css('color', ladminmod_color);}
 	);	
 	
-	//this is crazy, man
-	/*var bgimage = jQuery("#adminmenu li a #awaiting-mod").css('background-image');*/	
-	<?php /*$im = imagecreatefromgif(get_option('siteurl'). '/wp-admin/images/comment-stalk-classic.gif' );	
-	$start_x = 82;
-	$start_y = 2;
-	$color_index = imagecolorat($im, $start_x, $start_y);	
-	$color_tran = imagecolorsforindex($im, $color_index);*/ ?>	
-	/*jQuery("#lm li a #awaiting-mod span").css('background-color', ladminmod_bgcolor);				
-	var ladminmod_hoverbgcolor = "<?php /*echo 'rgb('.$color_tran['red'].', '.$color_tran['green'].', '.$color_tran['blue'].')'*/ ?>";*/		
-	/*var ladminmod_hoverbgcolor = jQuery('#sidemenu a').css('border-bottom-color'); //same as awaiting-mod hover bg	
-	jQuery('#lm li a #awaiting-mod span').hover(
-		function() { jQuery(this).css('background-color', ladminmod_hoverbgcolor);}, 
-		function() { jQuery(this).css('background-color', ladminmod_bgcolor);}
-	);*/		
 	//#wphead bottom border. this imitates wordpress.com and .org
 	jQuery('#wphead').css("border-bottom", "1px solid");			
 	jQuery('#wphead').css("border-bottom-color", borderline);	
-	// this is for compatiblity with baltic amber and other possible restyling
-	// it doesn't work anymore, forget it
-	/*jQuery('#wpcontent').css('border-top-width', '0px');
-	jQuery('#wphead').css('border-top','');
-	jQuery('#wphead').css('border-top-width', '30px');
-	jQuery('#wphead').css('border-top-style', 'solid');	
-	jQuery('#wphead').css('border-top-width', '30px');*/
 		
 	// Remove original menus (this is, actually, not needed, since the CSS should have taken care of this)
 	jQuery('#sidemenu').hide();
@@ -831,6 +794,9 @@ function lm_icons($menuitem){
 			case __('Posts'):
 				$i = "folder_table.png";
 				break;
+			case __('Drafts'):
+				$i = "folder_error.png";
+				break;
 			case __('Pages'):
 				$i = "folder_page.png";
 				break;
@@ -917,6 +883,11 @@ function lm_icons($menuitem){
 			case __('Miscellaneous'):
 				$i = "bullet_wrench.png";
 				break;
+			/*thanks callum*/
+			default :
+				$i = "plugin.png";
+				break;
+				
 		}
 		if (substr($menuitem,0,7) == substr(__('Authors &amp; Users'),0,7)) 
 		{
@@ -945,6 +916,7 @@ function lm_page(){
 				'hide_submenu' => $_POST['hide_submenu'],
 				'max_plugins' => $_POST['max_plugins'],
 				'show_zero' => $_POST['show_zero'],
+				'drafts_menu' => $_POST['drafts_menu'],
 				'uninstall' => '', 
 				'folder' => ''
 				);
@@ -966,6 +938,7 @@ function lm_page(){
 				'hide_submenu' => $lmoptions['hide_submenu'],
 				'max_plugins' => $lmoptions['max_plugins'],
 				'show_zero' => $lmoptions['show_zero'],
+				'drafts_menu' => $lmoptions['drafts_menu'],
 				'uninstall' => $_POST['remove'],
 				'folder' => $_POST['folder']
 				);
@@ -1005,6 +978,7 @@ function lm_page(){
 	if ( $lmoptions['remove_howdy'] ) $removehowdy_selected = 'checked';
 	if ( $lmoptions['hide_submenu'] ) $showsubmenu_selected = 'checked';
 	if ( $lmoptions['show_zero'] ) $showzero_selected = 'checked';
+	if ( $lmoptions['drafts_menu'] ) $draftsmenu_selected = 'checked';
 	if ( $lmoptions['uninstall'] ) $remove_lm_selected = 'checked';
 	if ( $lmoptions['folder'] ) $folder_lm_selected = 'checked';		
 	?>		
@@ -1043,7 +1017,12 @@ function lm_page(){
 
     <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/showzero.png" /></th><td>
     <div><input type="checkbox" name="show_zero" value="1" <?php echo $showzero_selected ?> />
-    &nbsp;<?php echo _e('Show the total comments awaiting moderation even with zero comments to moderate.','lighter-menus') ?></div>    
+    &nbsp;<?php echo _e('Show when there are 0 comments to moderate.','lighter-menus') ?></div>    
+    </td></tr>
+    
+    <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/draftsmenu.png" /></th><td>
+    <div><input type="checkbox" name="drafts_menu" value="1" <?php echo $draftsmenu_selected ?> />
+    &nbsp;<?php echo _e('Add \'Drafts\' to the \'Manage menu\'.','lighter-menus') ?></div>    
     </td></tr>
     
     <tr valign="top"><th scope="row"><img src="<?php echo LIGHTER_PATH; ?>/images/menulines.png" /></th><td>
@@ -1123,6 +1102,7 @@ function lm_activation() {
 		$lmoptions['hide_submenu'] = '1';
 		$lmoptions['max_plugins'] = '30';
 		$lmoptions['show_zero'] = '';
+		$lmoptions['drafts_menu'] = '';
 		$lmoptions['uninstall'] = '';
 		$lmoptions['folder'] = '';
         add_option('lighter_options', $lmoptions);

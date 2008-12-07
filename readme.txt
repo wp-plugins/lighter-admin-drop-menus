@@ -3,7 +3,7 @@ Contributors: corpodibacco
 Tags: menu, admin, css, drop down, light
 Requires at least: 2.5
 Tested up to: 2.6
-Stable tag: 2.7.2
+Stable tag: 2.7.3
 
 Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.6+.
 
@@ -27,7 +27,7 @@ Lighter Menus creates Drop Down Menus instead of the regular Admin menus for Wor
 
 1. Upload the entire content of plugin archive to your `/wp-content/plugins/` directory, so that everything will remain in a `/wp-content/plugins/lighter-menus/` folder
 2. Activate the plugin through the 'Plugins' menu in WordPress (deactivate and reactivate if you're upgrading).
-3. Review the option page in "Design" > "Lighter menus"
+3. Check out the options in the "Design" > "Lighter menus" page. You'll find a couple of little treasures.
 4. Done. Enjoy.
 
 == Translations ==
@@ -42,12 +42,15 @@ This version of Lighter Menus features localizations in:
 * Polish, thanks to x600
 * Swedish, thanks to [Mikael Jorhult](http://www.mishkin.se/)
 * Spanish, thanks to [Alejandro Urrutia Daglio](http://theindependentproject.com/)
+* Farsi, thanks to [Mohammad Musavi](http://www.musavis.com)
+* Romanian, thanks to [Dragos Nicolae] (http://www.FreeSoftwareWorkshop.com)
 * Italian, thanks to, well, yours truly.
 
 More are needed! If you want to translate this plugin in your language you are very welcome! In fact there are very few lines to translate. Just be aware that despite what [poEdit](http://www.poedit.net/) wants you to do, you should translate only the items that in the code are actually under the textdomain 'lighter-menus'. You will notice in lighter-menus.php that 35 or so translatable items have no textdomain indicated (they look like this: `__('Dashboard')`, instead of this: `__('Dashboard', 'lighter-menus')` ). They're in the functions "lm\_icons" and "lm\_build" and they are just menu items names used for reference when binding them with the respective icons or style classes. In such cases just leave the translation empty, it would be useless work to translate said items since they are not for the user to read. Your Wordpress locale takes care of those translations.
 
 == Changelog ==
 
+* 2.7.3 This version is NOT compatible with the incoming Wordpress 2.7. I have doubts there ever will be one, anyway this is not it. That said, with this version I added a new option to display a 'Drafts' entry in the 'Manage' submenu! Hope this is welcome. I also fixed a few minor other things in the code. I have worked on it on the very far side, so nothing exceptional. Two new translations are avilable as well, in Farsi thanks to [Mohammad Musavi](http://www.musavis.com), and Romanian thanks to [Dragos Nicolae] (http://www.FreeSoftwareWorkshop.com). IMPORTANT NOTE about translations: due to a recent PC disaster I lost all email messages and addresses of Lighter Menus translators. So if you submitted a new localization in the past, or want to make a updated one after this, please consider sending it again (my address is on [this page](http://www.italyisfalling.com/contact). A thousand apologies. Thanks!
 * 2.7.2 This version simply adds new localizations of Lighter Menus. Polish thanks to x600, Swedish thanks to [Mikael Jorhult](http://www.mishkin.se/) and Spanish thanks to [Alejandro Urrutia Daglio](http://theindependentproject.com/). In case you were wondering, that couple of minor problems with other plugins that have been pointed out recently on the blog have NOT been investigated or addressed by this release because there is no time. No time, my friends.  Ugly words indeed but that's how it goes.
 * 2.7.1 This version fixes a couple of minor problems given by the new WP 2.6: the press-this page, that didn't work (thanks to [Robert](http://robv.de/) for pointing this bug out), and the notification bubble of the plugins menu, which wasn't considered. This version also includes a Russian translation, thanks to [rlector](http://www.wordpressplugins.ru/).
 * 2.7 This version includes Chinese-Taiwan translation. Thanks to [hit1205](http://hit1205.blogdns.org/blog) for the effort! hit1205 also heroically helped to fix the "no howdy" feature for Wordpress Chinese. Thanks man! This version also implements a new feature, asked for by Callum on the blog: the ability to optionally show the comment bubble even if there is nothing to moderate. You're welcome, man! :) I also cleaned a little the appearance of the above mentioned bubble, it should look less ugly now. 

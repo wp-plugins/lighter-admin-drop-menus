@@ -1,5 +1,5 @@
 === Lighter Menus ===
-Contributors: corpodibacco
+Contributors: ico
 Tags: menu, admin, css, drop down, light
 Requires at least: 2.5
 Tested up to: 2.6

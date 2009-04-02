@@ -5,7 +5,7 @@ Requires at least: 2.5
 Tested up to: 2.6
 Stable tag: 2.7.5
 
-Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. Ready for Worpress 2.6+.
+Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. **NOT Ready for Worpress 2.7**.
 
 == Description ==
 

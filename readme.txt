@@ -2,10 +2,10 @@
 Contributors: ico@italyisfalling.com
 Tags: menu, admin, css, drop down, light
 Requires at least: 2.5
-Tested up to: 2.6
+Tested up to: 2.6.5
 Stable tag: 2.7.5
 
-Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. **NOT Ready for Worpress 2.7**.
+Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. NOT Ready for Worpress 2.7.
 
 == Description ==
 

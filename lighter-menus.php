@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Lighter Menus
-Plugin URI: http://www.italyisfalling.com/lighter-menus
-Description: Creates Drop Down Menus instead of the regular Admin menus for WordPress, so that you can browse items with one click. NOT Ready for Worpress 2.7.
+Plugin URI: http://unalignedcode.wordpress.com/lighter-menus
+Description: discontinued plugin. 
 Version: 2.7.5
-Author: ico@italyisfalling.com
-Author URI: http://www.italyisfalling.com/coding/
+Author: unalignedcoder
+Author URI: http://unalignedcode.wordpress.com
 WordPress Version: 2.6.5
 */
 
